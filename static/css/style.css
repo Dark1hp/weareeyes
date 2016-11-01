@@ -2246,6 +2246,7 @@ select[multiple].input-lg {
   font-weight: 400;
 }
 .block-center,
+.header__info,
 .share,
 .content__wrapper {
   float: none;
@@ -2513,11 +2514,40 @@ a:hover {
   background: #171a1f url('../img/loader.png');
   background-size: 100% 100%;
 }
+.logo {
+  position: relative;
+  z-index: 10;
+}
 .header {
   position: relative;
   padding: 70px 0;
   text-align: center;
   z-index: 2;
+}
+.header__info {
+  position: relative;
+  overflow: hidden;
+  max-height: 75%;
+  height: 75%;
+  margin: 50px auto 50px;
+}
+.header__info img {
+  display: block;
+  width: 120%;
+  margin-left: -15%;
+  height: 135%;
+  margin-top: -10%;
+}
+.header__title {
+  position: absolute;
+  bottom: 35px;
+  width: 100%;
+  text-align: center;
+  font-weight: 400;
+  font-size: 34px;
+  color: #fff;
+  letter-spacing: 3px;
+  text-shadow: 0 0 10px #fff;
 }
 .header__text {
   margin: 75px auto 65px;
@@ -2528,6 +2558,11 @@ a:hover {
 }
 .header--campaign {
   background: url('../img/campaign-bg.png');
+  background-size: cover;
+}
+.header--homepage {
+  height: 100vh;
+  background: url('../img/homepage-bg.png');
   background-size: cover;
 }
 .header.pb-30 {
@@ -2548,6 +2583,24 @@ a:hover {
 }
 .header--full-screen {
   height: 100vh;
+}
+/* Homepage Manifesto */
+.manifesto {
+  position: relative;
+  top: -40px;
+  height: 100vh;
+  padding: 70px 0;
+  background: #161a1f;
+  text-align: center;
+}
+.manifesto__title {
+  font-family: 'UbuntuMono', 'Ubuntu', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 34px;
+  list-height: 1;
+  margin: 75px auto 55px;
+  color: #fff;
+  letter-spacing: 4px;
 }
 /* Article */
 .main {
@@ -2570,6 +2623,16 @@ a:hover {
   letter-spacing: 1.5px;
   text-align: justify;
   text-align-last: center;
+}
+.main__item-content--manifesto {
+  padding: 0 40px;
+  font-size: 16px;
+  line-height: 2;
+  word-spacing: 5px;
+  color: #fff;
+}
+.main__item-content span {
+  color: #40d3ba;
 }
 .main__item:last-child {
   margin-bottom: 0;
@@ -2705,6 +2768,9 @@ a:hover {
   overflow-x: visible;
   min-height: 5000px;
 }
+.content__wrapper--home {
+  overflow: visible;
+}
 .content__title,
 .content__img {
   position: absolute;
@@ -2719,6 +2785,19 @@ a:hover {
 }
 .content__img {
   cursor: pointer;
+}
+.content__img-title {
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  font-size: 12px;
+  font-weight: 500;
+  color: #15191e;
+  letter-spacing: 2.5px;
+}
+.content__img-title--right {
+  left: auto;
+  right: 0;
 }
 .content__img--shadow {
   position: relative;

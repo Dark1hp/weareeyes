@@ -8,11 +8,43 @@
   background-size: 100% 100%;
 }
 
+.logo {
+  position: relative;
+  z-index: 10;
+}
+
 .header {
   position: relative;
   padding: 70px 0;
   text-align: center;
   z-index: 2;
+
+  &__info {
+    position: relative;
+    overflow: hidden;
+    &:extend(.block-center);
+    max-height: 75%;
+    height: 75%;
+    margin: 50px auto 50px;
+    & img {
+      display: block;
+      width: 120%;
+      margin-left: -15%;
+      height: 135%;
+      margin-top: -10%;
+    }
+  }
+  &__title {
+    position: absolute;
+    bottom: 35px;
+    width: 100%;
+    text-align: center;
+    font-weight: 400;
+    font-size: 34px;
+    color: #fff;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px #fff;
+  }
 
   &__text {
     margin: 75px auto 65px;
@@ -24,6 +56,11 @@
   }
   &--campaign {
     background: url('@{img-folder}campaign-bg.png');
+    background-size: cover;
+  }
+  &--homepage {
+    height: 100vh;
+    background: url('@{img-folder}homepage-bg.png');
     background-size: cover;
   }
 
@@ -51,6 +88,26 @@
   }
 }
 
+/* Homepage Manifesto */
+.manifesto {
+  position: relative;
+  top: -40px;
+  height: 100vh;
+  padding: 70px 0;
+  background: #161a1f;
+  text-align: center;
+
+  &__title {
+    font-family: 'UbuntuMono', 'Ubuntu', Arial, sans-serif;
+    font-weight: 700;
+    font-size: 34px;
+    list-height: 1;
+    margin: 75px auto 55px;
+    color: #fff;
+    letter-spacing: 4px;
+  }
+}
+
 /* Article */
 .main {
   position: relative;
@@ -70,6 +127,17 @@
       letter-spacing: 1.5px;
       text-align: justify;
       text-align-last: center;
+
+      &--manifesto {
+        padding: 0 40px;
+        font-size: 16px;
+        line-height: 2;
+        word-spacing: 5px;
+        color: #fff;
+      }
+      & span {
+        color: #40d3ba;
+      }
     }
     &:last-child {
       margin-bottom: 0;
@@ -224,6 +292,9 @@
       overflow-x: visible;
       min-height: 5000px;
     }
+    &--home {
+      overflow: visible;
+    }
   }
   &__title, &__img {
     position: absolute;
@@ -238,6 +309,20 @@
   }
   &__img {
     cursor: pointer;
+    &-title {
+      position: absolute;
+      bottom: -30px;
+      left: 0;
+      font-size: 12px;
+      font-weight: 500;
+      color: #15191e;
+      letter-spacing: 2.5px;
+
+      &--right {
+        left: auto;
+        right: 0;
+      }
+    }
     &--shadow {
       position: relative;
       display: inline-block;
@@ -265,6 +350,8 @@
     }
   }
 }
+
+
 
 /* Campaign */
 .campaign {
