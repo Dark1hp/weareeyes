@@ -81,6 +81,16 @@
   font-weight: 500;
   line-height: 1;
 
+  &--close &__line {
+    background: @btn;
+    &:last-child {
+      width: 100%;
+    }
+  } 
+  &--close &__info {
+    color: @btn;
+  }
+
   &:hover &__line:last-child {
     width: 100%;
   }
@@ -110,4 +120,145 @@
   position: absolute;
   right: 90px;
   bottom: 30px;
+}
+
+.nav {
+  right: 20px;
+  &__item {
+    position: relative;
+    display: block;
+    height: 65px;
+    width: 40px;
+    margin-bottom: 30px;
+    line-height: 65px;
+    font-size: 12px;
+    font-weight: 500;
+    color: @btn;
+    &:hover, &:active, &:focus {
+      color: @btn;
+      opacity: .75;
+    }
+    &-number {
+      position: absolute;
+      left: -25%;
+      transform: translateX(-50%);
+    }
+    &-name {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      display: inline-block;
+      line-height: 16px;
+      transform-origin: right top;
+      transform: rotate(90deg) translateY(-50%) translateX(50%);
+      opacity: 0;
+    }
+    &-line {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 2px;
+      height: 100%;
+      background: @btn;
+    }
+    &.active {
+      color: #fff;
+      &:hover {
+        opacity: 1;
+      }
+    }
+    &.active &-line {
+      background: #fff;
+    }
+    &.active &-name {
+      opacity: 1;
+    }
+    &.active &-number {
+      font-size: 20px;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  &--black &__item.active {
+    color: #000;
+  }
+  &--black &__item.active &__item-line {
+    background: #000;
+  }
+}
+
+.collection {
+  &-wrapper:hover &-link {
+    opacity: 1;
+    &:before {
+      top: 12px;
+      left: -12px;
+    }
+    &:after {
+      bottom: 12px;
+      right: -12px;
+    }
+    &__title {
+      bottom: 27%;
+    }
+  }
+}
+
+.collection-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: rgba(0, 0, 0, .25);
+  opacity: 0;
+  transition: all .4s;
+
+  &:before, &:after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 100px;
+    height: 100px;
+    border: 2px solid @btn;
+    transition: all .4s;
+  }
+
+  &:before {
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: none;
+  }
+  &:after {
+    bottom: 0;
+    right: 0;
+    border-top: none;
+    border-left: none;
+  }
+
+  &__icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: visible;
+  }
+  &__title {
+    position: absolute;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    color: @btn;
+    line-height: 1;
+    text-transform: uppercase;
+    text-align: center;
+    transition: .4s;
+  }
 }
