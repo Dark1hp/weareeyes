@@ -2606,7 +2606,7 @@ a:hover {
 .main__item-content {
   font-size: 12px;
   line-height: 30px;
-  word-spacing: 10px;
+  word-spacing: 3px;
   letter-spacing: 1.5px;
   text-align: justify;
   -moz-text-align-last: center;
@@ -2917,10 +2917,10 @@ a:hover {
   top: 180px;
 }
 .line-horizontal:nth-child(2) {
-  top: 650px;
+  top: 610px;
 }
 .line-horizontal:nth-child(3) {
-  top: 1100px;
+  top: 1030px;
 }
 /* Follow us */
 .follow-us {
