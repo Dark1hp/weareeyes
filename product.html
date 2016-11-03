@@ -35,15 +35,16 @@
           </span>
       </h3>
     </div>
+    
     <div class="slider slider--product">
       <div class="slider__content clearfix"><img src="./upload/product-big.png" alt="Product"></div>
       <div class="slider__nav">
-        <a href="#!" class="slider__left sprite-slide-left"></a>
-        <a href="#!" class="slider__color active"><img src="./upload/product-color.png" alt="Color 1"></a>
-        <a href="#!" class="slider__color"><img src="./upload/product-color.png" alt="Color 2"></a>
-        <a href="#!" class="slider__color"><img src="./upload/product-color.png" alt="Color 3"></a>
-        <a href="#!" class="slider__color"><img src="./upload/product-color.png" alt="Color 4"></a>
-        <a href="#!" class="slider__right sprite-slide-right"></a>
+        <a href="#!" class="slider__control disabled slider__left sprite-slide-left"></a>
+        <a class="slider__color active"><img src="./upload/product-color.png" alt="Color 1"></a>
+        <a class="slider__color"><img src="./upload/product-color.png" alt="Color 2"></a>
+        <a class="slider__color"><img src="./upload/product-color.png" alt="Color 3"></a>
+        <a class="slider__color"><img src="./upload/product-color.png" alt="Color 4"></a>
+        <a href="#!" class="slider__control slider__right sprite-slide-right"></a>
       </div>
     </div>
     <div class="product__info">
@@ -54,15 +55,25 @@
       <a href="#!" class="shop-btn shop-btn--borders shop-btn--green">Add to cart</a>
       <a href="#!" class="shop-btn shop-btn--borders">Try at home</a>
     </div>
-    <section class="product__description col-md-4">
-      <h3 class="section-title">Description</h3>
-      <p>
+    <section class="product__description col-md-4 js-tab-wrapper">
+      <ul class="product__descr-list js-tab-menu">
+        <li class="product__descr-item"><a href="#!" class="product__descr-link active">Description</a></li>
+        <li class="product__descr-item"><a href="#!" class="product__descr-link">Specifications</a></li>
+        <li class="product__descr-item"><a href="#!" class="product__descr-link">Shipping & Returns</a></li>
+      </ul>
+      <p class="js-tab-content">
         The natural forces that surround us every day and every moment, hidden from plain sight, keeping things in motion, playing their part.
       </p>
-      <div class="product__description-btns">
+      <p class="js-tab-content">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem vitae doloribus porro deserunt dolor fugiat accusamus minus sunt vel odio, ad, ab tempore magnam repellendus impedit quisquam incidunt aspernatur. Animi.
+      </p>
+      <p class="js-tab-content">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque tenetur excepturi soluta molestias reprehenderit ipsam quod corporis facere distinctio ab!
+      </p>
+<!--       <div class="product__description-btns">
         <a href="#!" class="product__description-btn">Specifications</a>
         <a href="#!" class="product__description-btn">Shipping & Returns</a>
-      </div>
+      </div> -->
     </section>
     <div class="product__share share col-md-6 clearfix">
       <h3 class="section-title">share it with your friends</h3>
@@ -75,15 +86,19 @@
       <h3 class="section-title">Recommended for you</h3>
       <ul class="catalog__list recommendation clearfix">
         <li class="catalog__list-item">
-          <span class="product-name">Velocity</span>
-          <span class="product-price">80$</span>
+          <a href="#!" class="catalog__list-link">
+            <span class="product-name">Velocity</span>
+            <span class="product-price">80$</span>
+          </a>
           <div class="slider">
             <div class="slider__content clearfix"><img src="./upload/product.png" alt="Product"></div>
           </div>
         </li>
         <li class="catalog__list-item">
-          <span class="product-name">Velocity</span>
-          <span class="product-price">80$</span>
+          <a href="#!" class="catalog__list-link">
+            <span class="product-name">Velocity</span>
+            <span class="product-price">80$</span>
+          </a>
           <div class="slider">
             <div class="slider__content clearfix"><img src="./upload/product.png" alt="Product"></div>
           </div>
@@ -127,6 +142,10 @@
     <span class="burger__line"></span>
     <span class="burger__line"></span>
   </a>
+  <div class="cart">
+    
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta non ipsam, recusandae fugiat illo incidunt voluptatem dolores optio excepturi ipsa enim minus distinctio sit nihil obcaecati unde. Dolor, dolorum debitis!
+  </div>
   <!-- Content END -->
   <!--Import jQuery-->
   <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
