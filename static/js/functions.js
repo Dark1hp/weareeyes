@@ -112,8 +112,19 @@
     (function initListeners() {
       $(document).on('click', '.js-expand-btn', function(e) {
         e.preventDefault();
-        var getContainer = $(this).parents('.js-expand-container');
-        getContainer.toggleClass('expanded');
+        if($(this).data('target')) {
+          var getTarget = $(this).data('target');
+          var getAction = $(this).data('expand');
+          console.log(getAction);
+          if(getAction === true) {
+            $('.' + getTarget).addClass('expanded');
+          } else {
+            $('.' + getTarget).removeClass('expanded');
+          }
+        } else {
+          var getContainer = $(this).parents('.js-expand-container');
+          getContainer.toggleClass('expanded');
+        }
       });
     })();
 

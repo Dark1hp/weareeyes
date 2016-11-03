@@ -639,10 +639,90 @@
 .cart {
   position: absolute;
   top: 0;
-  right: 0;
+  right: -100%;
   z-index: 10;
   width: 50%;
   height: 100%;
-  padding: 90px 108px;
+  padding: 90px 130px 90px 108px;
   background: #f1efef;
+  color: #15191e;
+  transition: all .5s ease-in-out;
+  &.expanded {
+    right: 0;
+  }
+  &__line {
+    width: 100%;
+    height: 1px;
+    margin: 0;
+    margin-top: 40px;
+    background: #838486;
+  }
+  &__info {
+    position: relative;
+    padding-right: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 1.6px;
+    color: #15191e;
+
+    &:hover {
+      color: #15191e;
+      opacity: .75;
+    }
+    &:before {
+      content: '';
+      &:extend(.sprite-arrow-right);
+      position: absolute;
+      top: 2px;
+      right: 0;
+    }
+  }
+  &__item {
+    position: relative;
+    &-photo {
+      float: left;
+      width: 20%;
+    }
+    &-info {
+      position: relative;
+      float: left;
+      width: 80%;
+    }
+    &-title {
+      font-size: 14px;
+      letter-spacing: 2px;
+    }
+    &-count {
+      font-size: 14px;
+      letter-spacing: 2px;
+    }
+    &-remove {
+      &:extend(.sprite-remove-icon);
+      position: absolute;
+      top: 2px;
+      right: 0;
+
+      &:hover {
+        opacity: .85;
+      }
+    }
+  }
+  &__item, &__item-product {
+    padding: 40px 0;
+    border-bottom: 1px solid #838486;
+
+    &:last-child {
+      border: none;
+    }
+
+    &-product {
+      border-color: #e1e1e1;
+    }
+  }
+  &__checkout {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 }

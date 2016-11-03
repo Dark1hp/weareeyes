@@ -2321,9 +2321,13 @@ select[multiple].input-lg {
 .sprite-logo-icon,
 .sprite-expand-down,
 .sprite-expand-up,
+.sprite-remove-icon,
+.sprite-arrow-right,
 .shop-btn--back:before,
 .catalog__try-btn,
-.catalog__try.expanded .catalog__try-btn {
+.catalog__try.expanded .catalog__try-btn,
+.cart__info:before,
+.cart__item-remove {
   display: inline-block;
   background: url('../img/spritesheet.png') no-repeat;
   overflow: hidden;
@@ -2382,6 +2386,18 @@ select[multiple].input-lg {
   background-position: -35px -160px;
   width: 10px;
   height: 13px;
+}
+.sprite-remove-icon,
+.cart__item-remove {
+  background-position: -47px -160px;
+  width: 9px;
+  height: 11px;
+}
+.sprite-arrow-right,
+.cart__info:before {
+  background-position: -58px -160px;
+  width: 6px;
+  height: 10px;
 }
 .shop-btn {
   position: relative;
@@ -3255,10 +3271,87 @@ a:focus {
 .cart {
   position: absolute;
   top: 0;
-  right: 0;
+  right: -100%;
   z-index: 10;
   width: 50%;
   height: 100%;
-  padding: 90px 108px;
+  padding: 90px 130px 90px 108px;
   background: #f1efef;
+  color: #15191e;
+  transition: all 0.5s ease-in-out;
+}
+.cart.expanded {
+  right: 0;
+}
+.cart__line {
+  width: 100%;
+  height: 1px;
+  margin: 0;
+  margin-top: 40px;
+  background: #838486;
+}
+.cart__info {
+  position: relative;
+  padding-right: 30px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 1.6px;
+  color: #15191e;
+}
+.cart__info:hover {
+  color: #15191e;
+  opacity: .75;
+}
+.cart__info:before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  right: 0;
+}
+.cart__item {
+  position: relative;
+}
+.cart__item-photo {
+  float: left;
+  width: 20%;
+}
+.cart__item-info {
+  position: relative;
+  float: left;
+  width: 80%;
+}
+.cart__item-title {
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+.cart__item-count {
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+.cart__item-remove {
+  position: absolute;
+  top: 2px;
+  right: 0;
+}
+.cart__item-remove:hover {
+  opacity: .85;
+}
+.cart__item,
+.cart__item-product {
+  padding: 40px 0;
+  border-bottom: 1px solid #838486;
+}
+.cart__item:last-child,
+.cart__item-product:last-child {
+  border: none;
+}
+.cart__item-product,
+.cart__item-product-product {
+  border-color: #e1e1e1;
+}
+.cart__checkout {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
