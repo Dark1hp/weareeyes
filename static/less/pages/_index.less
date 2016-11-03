@@ -145,10 +145,26 @@
 
 .catalog {
   &__try {
+    position: relative;
     max-width: 69.9%;
     padding: 20px 0;
-    margin: 25px auto 70px;
+    margin: 70px auto;
     background: #f1efef;
+
+    &-btn {
+      &:extend(.sprite-expand-down);
+    }
+    &-text {
+      display: none;
+      padding: 0;
+    }
+
+    &.expanded &-btn {
+      &:extend(.sprite-expand-up);
+    }
+    &.expanded &-text {
+      display: block;
+    }
   }
   &__list {
     position: relative;
@@ -183,6 +199,9 @@
         }
       }
     }
+    &-link, &-link:hover {
+      color: #2e2e2e;
+    }
   }
 }
 
@@ -214,7 +233,7 @@
   }
   &__description {
     float: none;
-    margin: 0 auto 55px;
+    margin: 0 auto 120px;
     font-size: 14px;
     font-weight: 300;
     line-height: 2;
@@ -237,19 +256,46 @@
       }
     }
   }
+  &__descr {
+    &-list {
+      &:extend(.ul-unstyled);
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    &-item {
+      display: inline-block;
+      margin-right: 46px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    &-link {
+      color: #86888a;
+      font-weight: 400;
+
+      &:hover {
+        opacity: .75;
+        color: #86888a;
+      }
+    }
+
+    &-link.active {
+      color: #15191e;
+    }
+  }
   &__share {
-    margin-bottom: 55px;
+    margin-bottom: 75px;
   }
 }
 
-
 /* Share */
-
 .share {
   &:extend(.block-center);
   &__btn {
     display: inline-block;
-    width: 135px;
+    width: 20%;
     height: 32px;
     border: 1px solid #cbcbcb;
     margin-right: 30px;
@@ -265,7 +311,6 @@
 
 
 /* Content */
-
 .content {
   position: relative;
   overflow: visible;
@@ -377,6 +422,18 @@
     &.active img {
       width: 21px;
       height: 21px;
+    }
+  }
+  &__control {
+    &.disabled {
+      cursor: default;
+      opacity: .3;
+      &:hover {
+        opacity: .3;
+      }
+    }
+    &:hover {
+      opacity: .75;
     }
   }
   &__left {
@@ -576,4 +633,16 @@
       }
     }
   }
+}
+
+/* Cart */
+.cart {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  width: 50%;
+  height: 100%;
+  padding: 90px 108px;
+  background: #f1efef;
 }

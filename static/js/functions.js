@@ -100,6 +100,41 @@
       
     })();
 
+    (function dlTabs() {
+      var wrapper = $('.js-tab-wrapper'),
+        menu = wrapper.find('.js-tab-menu li'),
+        content = wrapper.find('.js-tab-content');
+      content.each(function(i) {
+        if (i !== 0) {
+          $(this).hide();
+        }
+        $(this).attr('data-tab', 'tab-' + i);
+      });
+      menu.each(function(i) {
+        $(this).attr('data-tab', 'tab-' + i);
+      });
+
+      menu.click(function() {
+        var getWrapper = $(this).closest(wrapper),
+          dataTab = $(this).attr('data-tab'),
+          curDataTab = getWrapper.find(menu).find('.active').parent().attr('data-tab');
+        getWrapper.find(menu).find('a').removeClass('active');
+        $(this).find('a').addClass('active');
+
+        getWrapper.find(content).filter('[data-tab=' + curDataTab + ']').slideUp(0, function() {
+          getWrapper.find(content).filter('[data-tab=' + dataTab + ']').slideDown(0);
+        });
+      });
+    })();
+
+    (function initListeners() {
+      $(document).on('click', '.js-expand-btn', function(e) {
+        e.preventDefault();
+        var getContainer = $(this).parents('.js-expand-container');
+        getContainer.toggleClass('expanded');
+      });
+    })();
+
   }); //end ready
 
 } (jQuery));
