@@ -3112,6 +3112,9 @@ a:focus {
   font-size: 11px;
   font-weight: 500;
 }
+.footer__nav-link:hover {
+  color: #40d3ba;
+}
 /* Lines */
 .line {
   position: absolute;
