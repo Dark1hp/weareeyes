@@ -2740,10 +2740,12 @@ a:focus {
   margin: 75px auto 65px;
 }
 .header--our-story {
+  min-height: 100vh;
   background: url('../img/our-story-bg.png');
   background-size: cover;
 }
 .header--campaign {
+  min-height: 100vh;
   background: url('../img/campaign-bg.png');
   background-size: cover;
 }
@@ -2974,8 +2976,8 @@ a:focus {
 .content {
   position: relative;
   overflow: visible;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 50px;
+  padding-bottom: 50px;
   z-index: 1;
 }
 .content__wrapper {
@@ -2983,8 +2985,6 @@ a:focus {
   overflow-x: hidden;
   max-width: 69.9%;
   width: 69.9%;
-  min-height: 1900px;
-  height: 1900px;
   text-align: center;
 }
 .content__wrapper--campaign {

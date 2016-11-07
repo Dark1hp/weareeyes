@@ -48,10 +48,12 @@
     margin: 75px auto 65px;
   }
   &--our-story {
+    min-height: 100vh;
     background: url('@{img-folder}our-story-bg.png');
     background-size: cover;
   }
   &--campaign {
+    min-height: 100vh;
     background: url('@{img-folder}campaign-bg.png');
     background-size: cover;
   }
@@ -314,16 +316,16 @@
 .content {
   position: relative;
   overflow: visible;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 50px;
+  padding-bottom: 50px;
   z-index: 1;
   &__wrapper {
     position: relative;
     overflow-x: hidden;
     max-width: 69.9%;
     width: 69.9%;
-    min-height: 1900px;
-    height: 1900px;
+    // min-height: 1900px;
+    // height: 1900px;
     &:extend(.block-center);
     text-align: center;
     &--campaign {

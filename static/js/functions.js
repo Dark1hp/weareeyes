@@ -16,7 +16,7 @@
           var generalNumberInString = $('.break-text')[i].innerHTML.replace("<span>", "").replace("</span>", "").length;
           var loop = 0;
           var loopPoint = 0;
-
+          console.log(wordsArr);
           if (typeof (wordsArr) == "object") {
             while (loop < Math.ceil(generalNumberInString / maxNumberForTitle) - 1) {
               if (loop === 0) {
