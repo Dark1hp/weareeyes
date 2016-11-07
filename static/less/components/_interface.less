@@ -47,6 +47,10 @@
     letter-spacing: 2px;
     vertical-align: middle;
   }
+  &--fixed {
+    position: fixed;
+    z-index: 3;
+  }
   &--left {
     left: 45px;
     right: auto;
@@ -69,10 +73,10 @@
 }
 
 .burger {
-  position: absolute;
+  position: fixed;
   top: 20%;
   left: 22px;
-  z-index: 2;
+  z-index: 3;
   display: block;
   width: 45px;
   color: @btn;
@@ -80,6 +84,8 @@
   font-size: 12px;
   font-weight: 500;
   line-height: 1;
+  top: 50%;
+  transform: translateY(-50%);
 
   &--close &__line {
     background: @btn;
@@ -107,12 +113,8 @@
     }
   }
 
-  &:hover {
+  &:hover, &:focus, &:active {
     color: @btn;
-  }
-  &--header {
-    top: 50%;
-    transform: translateY(-50%);
   }
 }
 

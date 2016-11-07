@@ -153,36 +153,36 @@
         var getCurrent = getSlider.find('.slider__content-item.active');
         if($(this).data('slide-number')) {
           var getNumber = $(this).data('slide-number');
+          $(this).siblings().removeClass('active');
+          $(this).addClass('active');
           getCurrent.removeClass('active');
           var getTarget = getSlider.find('.slider__content-item').eq(+getNumber - 1).addClass('active');
-          if(getTarget.is(':first')) {
-            getSlider.find('.js-slide-control').removeClass('disabled');
-            getSlider.find('.js-slide-prev').addClass('disabled');
-          } else if(getTarget.is(':last')) {
-            getSlider.find('.js-slide-control').removeClass('disabled');
-            getSlider.find('.js-slide-next').addClass('disabled');
-          } else {
-            getSlider.find('.js-slide-control').removeClass('disabled');
-          }
+          checkSlide(getTarget, getSlider);
         } else if($(this).hasClass('js-slide-prev') && !$(this).hasClass('disabled')) {
+          getSlider.find('.js-slide-control.active').removeClass('active').prev().addClass('active');
           getCurrent.removeClass('active').prev().addClass('active');
-          if(getTarget.is(':first')) {
-            getSlider.find('.js-slide-control').removeClass('disabled');
-            getSlider.find('.js-slide-prev').addClass('disabled');
-          } else if(getTarget.is(':last')) {
-            getSlider.find('.js-slide-control').removeClass('disabled');
-            getSlider.find('.js-slide-next').addClass('disabled');
-          } else {
-            getSlider.find('.js-slide-control').removeClass('disabled');
-          }
+          checkSlide(getCurrent.prev(), getSlider);
         } else if($(this).hasClass('js-slide-next') && !$(this).hasClass('disabled')) {
+          getSlider.find('.js-slide-control.active').removeClass('active').next().addClass('active');
           getCurrent.removeClass('active').next().addClass('active');
+          checkSlide(getCurrent.next(), getSlider);
         } else {
           return;
         }
       })
     })();
 
+    function checkSlide(getTarget, getSlider) {
+      if(getTarget.is(':first-child')) {
+        getSlider.find('.js-slide-control').removeClass('disabled');
+        getSlider.find('.js-slide-prev').addClass('disabled');
+      } else if(getTarget.is(':last-child')) {
+        getSlider.find('.js-slide-control').removeClass('disabled');
+        getSlider.find('.js-slide-next').addClass('disabled');
+      } else {
+        getSlider.find('.js-slide-control').removeClass('disabled');
+      }
+    }
   }); //end ready
 
 } (jQuery));

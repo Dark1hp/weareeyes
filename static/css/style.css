@@ -2215,6 +2215,8 @@ select[multiple].input-lg {
   padding-left: 0;
 }
 .container-center {
+  position: relative;
+  z-index: 5;
   float: none;
   max-width: 510px;
   margin: 0 auto;
@@ -2231,7 +2233,8 @@ select[multiple].input-lg {
   float: none;
   margin: 0 auto;
 }
-.break-text {
+.break-text,
+.main__item-manifesto {
   position: relative;
   z-index: 2;
   margin-bottom: 25px;
@@ -2451,6 +2454,10 @@ select[multiple].input-lg {
   letter-spacing: 2px;
   vertical-align: middle;
 }
+.shop-btn--fixed {
+  position: fixed;
+  z-index: 3;
+}
 .shop-btn--left {
   left: 45px;
   right: auto;
@@ -2469,10 +2476,10 @@ select[multiple].input-lg {
   color: #fff;
 }
 .burger {
-  position: absolute;
+  position: fixed;
   top: 20%;
   left: 22px;
-  z-index: 2;
+  z-index: 3;
   display: block;
   width: 45px;
   color: #40d3ba;
@@ -2480,6 +2487,10 @@ select[multiple].input-lg {
   font-size: 12px;
   font-weight: 500;
   line-height: 1;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
 }
 .burger--close .burger__line {
   background: #40d3ba;
@@ -2504,14 +2515,10 @@ select[multiple].input-lg {
 .burger__line:last-child {
   width: 65%;
 }
-.burger:hover {
+.burger:hover,
+.burger:focus,
+.burger:active {
   color: #40d3ba;
-}
-.burger--header {
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-          transform: translateY(-50%);
 }
 .sound-btn {
   position: absolute;
@@ -2781,17 +2788,16 @@ a:focus {
 /* Homepage Manifesto */
 .manifesto {
   position: relative;
-  top: -40px;
   height: 100vh;
   padding: 70px 0;
-  background: #161a1f;
+  background: url('../img/manifesto-bg.png') repeat;
   text-align: center;
 }
 .manifesto__title {
   font-family: 'UbuntuMono', 'Ubuntu', Arial, sans-serif;
   font-weight: 700;
   font-size: 34px;
-  list-height: 1;
+  line-height: 1;
   margin: 75px auto 55px;
   color: #fff;
   letter-spacing: 4px;
@@ -2820,14 +2826,15 @@ a:focus {
   -moz-text-align-last: center;
        text-align-last: center;
 }
-.main__item-content--manifesto {
-  padding: 0 40px;
-  font-size: 16px;
-  line-height: 2;
+.main__item-manifesto span {
+  display: block;
+  padding: 0 30px;
+  margin-bottom: 8px;
+  background: #15191e;
   word-spacing: 5px;
-  color: #fff;
 }
-.main__item-content span {
+.main__item-manifesto b {
+  font-weight: inherit;
   color: #40d3ba;
 }
 .main__item:last-child {
@@ -2836,7 +2843,7 @@ a:focus {
 /* Catalog */
 .catalog__try {
   position: relative;
-  max-width: 69.9%;
+  max-width: 865px;
   padding: 20px 0;
   margin: 70px auto;
   background: #f1efef;
@@ -2850,7 +2857,7 @@ a:focus {
 }
 .catalog__list {
   position: relative;
-  max-width: 69.9%;
+  max-width: 865px;
   margin: 0 auto;
 }
 .catalog__list.recommendation .catalog__list-item {
@@ -2859,18 +2866,21 @@ a:focus {
 .catalog__list-item {
   float: left;
   display: inline-block;
-  width: 28%;
+  width: 36%;
   max-height: 430px;
   padding: 30px 0;
-  margin-left: 14.66666667%;
+  margin-left: 14%;
   line-height: 1;
   background: #eaeaea;
   color: #2e2e2e;
 }
+.catalog__list-item:nth-child(odd) {
+  margin-left: 7%;
+}
 .catalog__list-item:nth-child(n+3) {
   margin-top: 50px;
 }
-@media (max-width: 1368px) {
+@media (max-width: 1365px) {
   .catalog__list-item {
     width: 35%;
     margin-left: 10%;
@@ -2998,6 +3008,8 @@ a:focus {
 }
 .content__wrapper--home {
   overflow: visible;
+  min-height: 1900px;
+  height: 1900px;
 }
 .content__title,
 .content__img {
@@ -3069,7 +3081,7 @@ a:focus {
   width: 100%;
   height: 100%;
   opacity: 0;
-  transition: all .5s;
+  transition: all 0.5s ease-in-out;
 }
 .slider__content-item.active {
   opacity: 1;
@@ -3088,6 +3100,7 @@ a:focus {
 .slider__color img {
   width: 13px;
   height: 13px;
+  transition: all 0.3s ease-in-out;
 }
 .slider__color.active img {
   width: 21px;
@@ -3111,14 +3124,15 @@ a:focus {
 }
 .slider--product {
   position: relative;
-  top: -13px;
+  top: -12.5px;
   max-width: 69.9%;
+  height: 54.85vh;
   padding: 105px 0 40px;
   margin: 0 auto;
   background: #eaeaea;
 }
 .slider--product .slider__content {
-  margin-bottom: 80px;
+  margin-bottom: 3%;
 }
 .slider--product .slider__content img {
   float: none;

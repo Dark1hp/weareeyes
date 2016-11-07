@@ -74,7 +74,7 @@ check them below!
           </a>
           <div class="slider">
             <ul class="slider__content clearfix">
-              <li class="slider__content-item">
+              <li class="slider__content-item active">
                 <img src="./upload/product.png" alt="Product">
               </li>
               <li class="slider__content-item">
@@ -85,11 +85,11 @@ check them below!
               </li>
             </ul>
             <div class="slider__nav">
-              <a href="#!" class="slider__control disabled slider__left sprite-slide-left"></a>
-              <a class="slider__color active"><img src="./upload/product-color.png" alt="Color 1"></a>
-              <a class="slider__color"><img src="./upload/product-color.png" alt="Color 2"></a>
-              <a class="slider__color"><img src="./upload/product-color.png" alt="Color 3"></a>
-              <a href="#!" class="slider__control slider__right sprite-slide-right"></a>
+              <a href="#!" class="slider__control disabled slider__left js-slide-control js-slide-prev"></a>
+              <a href="#!" class="slider__color js-slide-control active" data-slide-number="1"><img src="./upload/product-color.png" alt="Color 1"></a>
+              <a href="#!" class="slider__color js-slide-control" data-slide-number="2"><img src="./upload/product-color.png" alt="Color 2"></a>
+              <a href="#!" class="slider__color js-slide-control" data-slide-number="3"><img src="./upload/product-color.png" alt="Color 3"></a>
+              <a href="#!" class="slider__control slider__right js-slide-control js-slide-next"></a>
             </div>
           </div>
         </li>
@@ -99,14 +99,23 @@ check them below!
             <span class="product-price">80$</span>
           </a>
           <div class="slider">
-            <div class="slider__content clearfix"><img src="./upload/product.png" alt="Product"></div>
+            <ul class="slider__content clearfix">
+              <li class="slider__content-item active">
+                <img src="./upload/product.png" alt="Product">
+              </li>
+              <li class="slider__content-item">
+                <img src="./upload/product.png" alt="Product">
+              </li>
+              <li class="slider__content-item">
+                <img src="./upload/product.png" alt="Product">
+              </li>
+            </ul>
             <div class="slider__nav">
-              <a href="#!" class="slider__control disabled slider__left sprite-slide-left"></a>
-              <a class="slider__color active"><img src="./upload/product-color.png" alt="Color 1"></a>
-              <a class="slider__color"><img src="./upload/product-color.png" alt="Color 2"></a>
-              <a class="slider__color"><img src="./upload/product-color.png" alt="Color 3"></a>
-              <a class="slider__color"><img src="./upload/product-color.png" alt="Color 4"></a>
-              <a href="#!" class="slider__control slider__right sprite-slide-right"></a>
+              <a href="#!" class="slider__control disabled slider__left js-slide-control js-slide-prev"></a>
+              <a href="#!" class="slider__color js-slide-control active" data-slide-number="1"><img src="./upload/product-color.png" alt="Color 1"></a>
+              <a href="#!" class="slider__color js-slide-control" data-slide-number="2"><img src="./upload/product-color.png" alt="Color 2"></a>
+              <a href="#!" class="slider__color js-slide-control" data-slide-number="3"><img src="./upload/product-color.png" alt="Color 3"></a>
+              <a href="#!" class="slider__control slider__right js-slide-control js-slide-next"></a>
             </div>
           </div>
         </li>
@@ -116,14 +125,23 @@ check them below!
             <span class="product-price">80$</span>
           </a>
           <div class="slider">
-            <div class="slider__content clearfix"><img src="./upload/product.png" alt="Product"></div>
+            <ul class="slider__content clearfix">
+              <li class="slider__content-item active">
+                <img src="./upload/product.png" alt="Product">
+              </li>
+              <li class="slider__content-item">
+                <img src="./upload/product.png" alt="Product">
+              </li>
+              <li class="slider__content-item">
+                <img src="./upload/product.png" alt="Product">
+              </li>
+            </ul>
             <div class="slider__nav">
-              <a href="#!" class="slider__control disabled slider__left sprite-slide-left"></a>
-              <a class="slider__color active"><img src="./upload/product-color.png" alt="Color 1"></a>
-              <a class="slider__color"><img src="./upload/product-color.png" alt="Color 2"></a>
-              <a class="slider__color"><img src="./upload/product-color.png" alt="Color 3"></a>
-              <a class="slider__color"><img src="./upload/product-color.png" alt="Color 4"></a>
-              <a href="#!" class="slider__control slider__right sprite-slide-right"></a>
+              <a href="#!" class="slider__control disabled slider__left js-slide-control js-slide-prev"></a>
+              <a href="#!" class="slider__color js-slide-control active" data-slide-number="1"><img src="./upload/product-color.png" alt="Color 1"></a>
+              <a href="#!" class="slider__color js-slide-control" data-slide-number="2"><img src="./upload/product-color.png" alt="Color 2"></a>
+              <a href="#!" class="slider__color js-slide-control" data-slide-number="3"><img src="./upload/product-color.png" alt="Color 3"></a>
+              <a href="#!" class="slider__control slider__right js-slide-control js-slide-next"></a>
             </div>
           </div>
         </li>
@@ -157,6 +175,42 @@ as you like. We will only charge you for the ones you‘ll keep.
       </ul>
     </nav>
   </footer>
+
+  <a href="#!" class="burger burger--header js-expand-btn" data-target="menu" data-expand="true">
+    Menu
+    <span class="burger__line"></span>
+    <span class="burger__line"></span>
+    <span class="burger__line"></span>
+  </a>
+  <div class="menu">
+    <a href="#!" class="shop-btn shop-btn--borders shop-btn--header">Shop now ></a>
+    <a href="#!" class="burger burger--close burger--header js-expand-btn" data-target="menu" data-expand="false">
+        <div class="burger__info">Close</div>
+        <div>
+          <span class="burger__line"></span>
+        </div>
+    </a>
+    <div class="menu__wrapper">
+    <ul class="menu__list">
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">Home</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">quality & production</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">we are who?</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">the forces collection</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">try before you choose</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">shipping & returns</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">warranty</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">terms & conditions</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">Lorem.</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">Lorem.</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">Lorem.</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">Lorem.</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">Lorem.</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">Lorem.</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">Lorem.</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">Lorem.</a></li>
+    </ul>
+    </div>
+  </div>
   <div class="line-grid">
     <div>
       <div class="line line-vertical"></div>
@@ -167,12 +221,35 @@ as you like. We will only charge you for the ones you‘ll keep.
       <div class="line line-horizontal"></div>
     </div>
   </div>
-  <a href="#!" class="burger">
-    Menu
-    <span class="burger__line"></span>
-    <span class="burger__line"></span>
-    <span class="burger__line"></span>
-  </a>
+  <div class="menu">
+    <a href="#!" class="shop-btn shop-btn--borders shop-btn--header">Shop now ></a>
+    <a href="#!" class="burger burger--close burger--header js-expand-btn" data-target="menu" data-expand="false">
+        <div class="burger__info">Close</div>
+        <div>
+          <span class="burger__line"></span>
+        </div>
+    </a>
+    <div class="menu__wrapper">
+    <ul class="menu__list">
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">Home</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">quality & production</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">we are who?</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">the forces collection</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">try before you choose</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">shipping & returns</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">warranty</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">terms & conditions</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">Lorem.</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">Lorem.</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">Lorem.</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">Lorem.</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">Lorem.</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">Lorem.</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">Lorem.</a></li>
+      <li class="menu__list-item"><a href="#!" class="menu__list-link">Lorem.</a></li>
+    </ul>
+    </div>
+  </div>
   <!-- Content END -->
   <!--Import jQuery-->
   <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
