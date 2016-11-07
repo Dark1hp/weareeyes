@@ -2198,6 +2198,7 @@ select[multiple].input-lg {
 .ul-unstyled,
 .catalog__list,
 .product__descr-list,
+.slider__content,
 .footer__nav,
 .menu__list {
   margin: 0;
@@ -2326,6 +2327,8 @@ select[multiple].input-lg {
 .shop-btn--back:before,
 .catalog__try-btn,
 .catalog__try.expanded .catalog__try-btn,
+.slider__left,
+.slider__right,
 .cart__info:before,
 .cart__item-remove {
   display: inline-block;
@@ -2360,12 +2363,14 @@ select[multiple].input-lg {
   width: 31px;
   height: 30px;
 }
-.sprite-slide-left {
+.sprite-slide-left,
+.slider__left {
   background-position: -68px -128px;
   width: 31px;
   height: 25px;
 }
-.sprite-slide-right {
+.sprite-slide-right,
+.slider__right {
   background-position: -2px -155px;
   width: 31px;
   height: 25px;
@@ -2978,7 +2983,7 @@ a:focus {
   overflow: visible;
   padding-top: 50px;
   padding-bottom: 50px;
-  z-index: 1;
+  z-index: 3;
 }
 .content__wrapper {
   position: relative;
@@ -3052,6 +3057,22 @@ a:focus {
   position: relative;
   z-index: 1;
   margin: 45px 0 40px 0;
+}
+.slider__content {
+  position: relative;
+  min-height: 240px;
+}
+.slider__content-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: all .5s;
+}
+.slider__content-item.active {
+  opacity: 1;
 }
 .slider__content img {
   float: right;
