@@ -2273,6 +2273,22 @@ select[multiple].input-lg {
       -ms-transform: translateX(-50%);
           transform: translateX(-50%);
 }
+.extratext {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: #40d3ba;
+}
+.extratext__link {
+  padding: 3px 0;
+  border-bottom: 1px solid #40d3ba;
+  color: #40d3ba;
+}
+.extratext__link:hover,
+.extratext__link:active,
+.extratext__link:focus {
+  color: #40d3ba;
+}
 @font-face {
   font-family: 'Ubuntu';
   src: url('../fonts/Ubuntu-Bold.eot');
@@ -2543,7 +2559,10 @@ select[multiple].input-lg {
 .nav__item:active,
 .nav__item:focus {
   color: #40d3ba;
-  opacity: .75;
+}
+.nav__item:hover .nav__item-number,
+.nav__item:hover .nav__item-name {
+  opacity: 1;
 }
 .nav__item-number {
   position: absolute;
@@ -2551,6 +2570,8 @@ select[multiple].input-lg {
   -webkit-transform: translateX(-50%);
       -ms-transform: translateX(-50%);
           transform: translateX(-50%);
+  opacity: 0;
+  transition: all .3s;
 }
 .nav__item-name {
   position: absolute;
@@ -2564,6 +2585,7 @@ select[multiple].input-lg {
   -webkit-transform: rotate(90deg) translateY(-50%) translateX(50%);
       -ms-transform: rotate(90deg) translateY(-50%) translateX(50%);
           transform: rotate(90deg) translateY(-50%) translateX(50%);
+  transition: all .3s;
   opacity: 0;
 }
 .nav__item-line {
@@ -2721,7 +2743,6 @@ a:focus {
   position: relative;
   padding: 70px 0;
   text-align: center;
-  z-index: 2;
 }
 .header__info {
   position: relative;
@@ -3014,6 +3035,7 @@ a:focus {
 .content__title,
 .content__img {
   position: absolute;
+  z-index: 1;
 }
 .content__title {
   top: 115px;
@@ -3059,6 +3081,12 @@ a:focus {
 }
 .content__img--full-width img {
   width: 100%;
+}
+.content__link-footer {
+  position: absolute;
+  bottom: 105px;
+  width: 100%;
+  text-align: center;
 }
 /* Campaign */
 .campaign__info {
@@ -3145,6 +3173,7 @@ a:focus {
 }
 /* Footer */
 .footer {
+  position: relative;
   background: #191d22;
   padding: 30px 0;
 }
@@ -3184,12 +3213,25 @@ a:focus {
   height: 100%;
   width: 1px;
   background: rgba(209, 212, 212, 0.75);
+  z-index: 0;
 }
 .line-vertical:first-child {
   left: 15%;
 }
 .line-vertical:last-child {
   right: 15%;
+}
+.line-vertical.line-vertical--left {
+  left: 16.66666667%;
+}
+.line-vertical.line-vertical--right {
+  right: 16.66666667%;
+}
+.line-vertical--dark {
+  background: #0d1414;
+}
+.line-vertical--light {
+  background: #d1d4d4;
 }
 .line-horizontal {
   left: 0;

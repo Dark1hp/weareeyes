@@ -138,12 +138,17 @@
     color: @btn;
     &:hover, &:active, &:focus {
       color: @btn;
-      opacity: .75;
+    }
+    &:hover &-number,
+    &:hover &-name {
+      opacity: 1;
     }
     &-number {
       position: absolute;
       left: -25%;
       transform: translateX(-50%);
+      opacity: 0;
+      transition: all .3s;
     }
     &-name {
       position: absolute;
@@ -153,6 +158,7 @@
       line-height: 16px;
       transform-origin: right top;
       transform: rotate(90deg) translateY(-50%) translateX(50%);
+      transition: all .3s;
       opacity: 0;
     }
     &-line {

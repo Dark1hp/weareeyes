@@ -86,3 +86,19 @@
   left: 50%;
   transform: translateX(-50%);
 }
+.extratext {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: @btn;
+
+  &__link {
+    padding: 3px 0;
+    border-bottom: 1px solid @btn;
+    color: @btn;
+
+    &:hover, &:active, &:focus {
+      color: @btn;
+    }
+  }
+}
