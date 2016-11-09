@@ -43,6 +43,10 @@
   float: none;
   max-width: 510px;
   margin: 0 auto; 
+
+  @media (min-width: 1920px) {
+    max-width: 640px;
+  }
 }
 .section-title {
   margin-bottom: 25px;
@@ -62,7 +66,7 @@
   font-size: 16px;
   color: #fefefe;
   text-transform: uppercase;
-  letter-spacing: 1.5px;
+  letter-spacing: 2.5px;
   text-align: justify;
   text-align-last: center;
   & span {
@@ -70,7 +74,7 @@
     padding: 0 24px;
     margin-bottom: 8px; 
     background: @font;
-    word-spacing: 10px;
+    // word-spacing: 3px;
   }
   &.m-0, &.m-0 span {
     margin: 0;

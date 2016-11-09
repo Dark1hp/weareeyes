@@ -8,7 +8,7 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <title>Title</title>
   <!-- Import main styles -->
-  <link rel="stylesheet" href="./static/css/style.css">
+  <link rel="stylesheet" href="./assets/style.css">
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -30,8 +30,8 @@
     </div>
     <a class="header__scroll" href="#!">
       Scroll Down
-      <br>
-      <span class="header__scroll-icon sprite-btn-scroll"></span>
+      <!-- <br> -->
+      <!-- <span class="header__scroll-icon sprite-btn-scroll"></span> -->
     </a>
     <a href="#!" class="sound-btn sprite-sound-icon"></a>
     <div class="follow-us follow-us">
@@ -113,9 +113,13 @@
       <div class="content__wrapper content__wrapper--home">
         <a href="#!" class="logo"><img src="./static/img/logo.png" alt="WeAreEyes"></a>
         <div class="content__title"><img src="./static/img/forces.png" alt="Slogan"></div>
-        <div class="content__img horizontal-center lvl2" style="top: -8%;">
+        <div class="collection-wrapper content__img content__img--first horizontal-center lvl2" style="top: -8%;">
           <img src="./upload/campaign1.png" alt="Img1">
           <span class="content__img-title">Momentum — tortoise cream</span>
+          <a href="#!" class="collection-link">
+            <span class="collection-link__icon sprite-icon-plus"></span>
+            <span class="collection-link__title">see the collection</span>
+          </a>
         </div>
         <div class="collection-wrapper content__img lvl1" style="top: 525px; left: 27%;"><img src="./upload/campaign3.png" alt="Img2">
           <span class="content__img-title content__img-title--right">gravity — navy blue </span>
@@ -124,11 +128,21 @@
             <span class="collection-link__title">see the collection</span>
           </a>
         </div>
-        <div class="content__img lvl1" style="top: 1035px; right: -25px;"><img src="./upload/campaign4.png" alt="Img3">
+        <div class="collection-wrapper content__img lvl1" style="top: 1035px; right: 0;">
+          <img src="./upload/campaign4.png" alt="Img3">
           <span class="content__img-title content__img-title">gravity — navy blue </span>
+          <a href="#!" class="collection-link">
+            <span class="collection-link__icon sprite-icon-plus"></span>
+            <span class="collection-link__title">see the collection</span>
+          </a>
         </div>
-        <div class="content__img lvl2" style="top: 1125px; left: -25px;"><img src="./upload/campaign11.png" alt="Img4">
+        <div class="collection-wrapper content__img lvl2" style="top: 1125px; left: 0;">
+          <img src="./upload/campaign11.png" alt="Img4">
           <span class="content__img-title">Momentum — tortoise cream</span>
+          <a href="#!" class="collection-link">
+            <span class="collection-link__icon sprite-icon-plus"></span>
+            <span class="collection-link__title">see the collection</span>
+          </a>
         </div>
       </div>
       <nav class="nav nav--black vertical-center">
@@ -153,7 +167,7 @@
     <span class="line line-vertical line-vertical--right line-vertical--dark"></span>
   </div>
   <footer class="footer">
-    <nav class="nav container-center">
+    <nav class="container-center">
       <ul class="footer__nav">
         <li class="footer__nav-item">
           <a href="#!" class="footer__nav-link"><img src="./static/img/logo-icon.png" alt="WeAreEyes"></a>
@@ -163,8 +177,8 @@
         <li class="footer__nav-item"><a href="#!" class="footer__nav-link">Warranty</a></li>
       </ul>
     </nav>
-    <span class="line line-vertical line-vertical--left line-vertical--light"></span>
-    <span class="line line-vertical line-vertical--right line-vertical--light"></span>
+    <span class="line line-vertical line-vertical--left line-vertical--dark"></span>
+    <span class="line line-vertical line-vertical--right line-vertical--dark"></span>
   </footer>
   <a href="#!" class="burger burger--header js-expand-btn" data-target="menu" data-expand="true">
     Menu
@@ -216,9 +230,9 @@
   <!--Import jQuery-->
   <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
   <!-- jQuery for older IE -->
-  <script src="./static/js/jquery.min.js"></script>
+  <script src="./assets/jquery.min.js"></script>
   <!-- Site Sripts -->
-  <script src="./static/js/functions.js"></script>
+  <script src="./assets/functions.js"></script>
 </body>
 
 </html>

@@ -8,7 +8,7 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <title>Product</title>
   <!-- Import main styles -->
-  <link rel="stylesheet" href="./static/css/style.css">
+  <link rel="stylesheet" href="./assets/style.css">
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -25,7 +25,7 @@
   <header class="header">
     <a href="#!" class="logo"><img src="./static/img/logo.png" alt="WeAreEyes"></a>
     <a href="#!" class="shop-btn shop-btn--header shop-btn--left shop-btn--back">Back</a>
-    <a href="#!" class="shop-btn shop-btn--header js-expand-btn" data-target="cart" data-expand="true">< Cart (3)</a>
+    <a href="#!" class="shop-btn shop-btn--header shop-btn--fixed js-expand-btn" data-target="cart" data-expand="true">< Cart (3)</a>
   </header>
   <main class="main">
     <div class="container-center">
@@ -69,15 +69,15 @@
         <li class="product__descr-item"><a href="#!" class="product__descr-link">Specifications</a></li>
         <li class="product__descr-item"><a href="#!" class="product__descr-link">Shipping & Returns</a></li>
       </ul>
-      <p class="js-tab-content">
+      <div class="js-tab-content">
         The natural forces that surround us every day and every moment, hidden from plain sight, keeping things in motion, playing their part.
-      </p>
-      <p class="js-tab-content">
+      </div>
+      <div class="js-tab-content">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem vitae doloribus porro deserunt dolor fugiat accusamus minus sunt vel odio, ad, ab tempore magnam repellendus impedit quisquam incidunt aspernatur. Animi.
-      </p>
-      <p class="js-tab-content">
+      </div>
+      <div class="js-tab-content">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque tenetur excepturi soluta molestias reprehenderit ipsam quod corporis facere distinctio ab!
-      </p>
+      </div>
     </section>
     <div class="product__share share col-md-6 clearfix">
       <h3 class="section-title">share it with your friends</h3>
@@ -117,7 +117,7 @@
     </div>
   </main>
   <footer class="footer">
-    <nav class="nav container-center">
+    <nav class="container-center">
       <ul class="footer__nav">
         <li class="footer__nav-item">
           <a href="#!" class="footer__nav-link"><img src="./static/img/logo-icon.png" alt="WeAreEyes"></a>
@@ -220,10 +220,9 @@
   <!--Import jQuery-->
   <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
   <!-- jQuery for older IE -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="./assets/jquery.min.js"></script>
   <!-- Site Sripts -->
-  <script defer src="./static/js/jquery.flexslider.js"></script>
-  <script src="./static/js/functions.js"></script>
+  <script src="./assets/functions.js"></script>
 </body>
 
 </html>

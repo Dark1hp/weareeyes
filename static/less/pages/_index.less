@@ -21,15 +21,13 @@
     position: relative;
     overflow: hidden;
     &:extend(.block-center);
-    max-height: 75%;
-    height: 75%;
-    margin: 50px auto 50px;
+    height: 82%;
+    margin: 2% auto 2%;
+    z-index: 2;
     & img {
       display: block;
-      width: 120%;
+      width: 78vw;
       margin-left: -15%;
-      height: 135%;
-      margin-top: -10%;
     }
   }
   &__title {
@@ -41,18 +39,22 @@
     font-size: 34px;
     color: #fff;
     letter-spacing: 3px;
-    text-shadow: 0 0 10px #fff;
+    text-shadow: 0 0 18px #fff, 0 0 18px #33a695;
+    @media (min-width: 1920px) {
+      font-size: 50px;
+      letter-spacing: 8px;
+    }
   }
   &__text {
     margin: 75px auto 65px;
   }
   &--our-story {
-    min-height: 100vh;
+    height: 100vh;
     background: url('@{img-folder}our-story-bg.png');
     background-size: cover;
   }
   &--campaign {
-    min-height: 100vh;
+    height: 100vh;
     background: url('@{img-folder}campaign-bg.png');
     background-size: cover;
   }
@@ -65,6 +67,7 @@
     padding-bottom: 30px;
   }
   &__scroll {
+    display: inline-block;
     letter-spacing: 2.5px;
     font-size: 12px;
     font-weight: 500;
@@ -73,12 +76,36 @@
       color: @btn;
       opacity: .75;
     }
+    &:after {
+      content: '';
+      display: block;
+      &:extend(.sprite-btn-scroll);
+      margin: 10px auto 0;
+    }
     &-icon {
       margin-top: 12px;
     }
   }
   &--full-screen {
     height: 100vh;
+  }
+  @media (min-width: 1920px) {
+    &--our-story,
+    &--campaign {
+      height: 680px;
+    }
+    &--our-story &__text {
+      max-width: 508px;
+      font-weight: 200;
+    }
+    &--our-story &__scroll,
+    &--our-story .follow-us,
+    &--our-story .sound-btn {
+      display: none;
+    }
+    &--campaign {
+      background: url('@{img-folder}campaign-bg-hd.png');
+    }
   }
 }
 
@@ -92,6 +119,7 @@
   background: url('@{img-folder}manifesto-bg.png') repeat;
   text-align: center;
   // z-index: 2;
+
   &__title {
     font-family: 'UbuntuMono', 'Ubuntu', Arial, sans-serif;
     font-weight: 700;
@@ -100,6 +128,12 @@
     margin: 75px auto 55px;
     color: #fff;
     letter-spacing: 4px;
+
+    @media (min-width: 1920px) {
+      font-size: 60px;
+      margin: 75px auto 110px;
+      letter-spacing: 10px;
+    }
   }
 }
 
@@ -133,14 +167,33 @@
         margin-bottom: 8px; 
         background: @font;
         word-spacing: 5px;
+
+        @media (min-width: 1920px) {
+          margin-bottom: 10px;
+          word-spacing: normal;
+          line-height: 1.7;
+        }
       }
       & b {
         font-weight: inherit;
         color: @btn;
       }
+
+      @media (min-width: 1920px) {
+        letter-spacing: 3.5px;
+        font-weight: 300;
+        font-size: 20px;
+      }
     }
     &:last-child {
       margin-bottom: 0;
+    }
+    @media (min-width: 1920px) {
+        max-width: 505px;
+        margin: 0 auto 50px;
+        & .break-text {
+          font-weight: 300;
+        }
     }
   }
 }
@@ -149,6 +202,9 @@
 /* Catalog */
 
 .catalog {
+  &__title {
+    margin-bottom: 1.5%;
+  }
   &__try {
     position: relative;
     max-width: 865px;
@@ -243,6 +299,8 @@
   &__description {
     float: none;
     margin: 0 auto 120px;
+    max-width: 540px;
+    width: 540px;
     font-size: 14px;
     font-weight: 300;
     line-height: 2;
@@ -329,11 +387,11 @@
   &__wrapper {
     position: relative;
     overflow-x: hidden;
-    max-width: 69.9%;
-    width: 69.9%;
-    
+    max-width: 900px;
+    width: 900px;
     &:extend(.block-center);
     text-align: center;
+    
     &--campaign {
       overflow-x: visible;
       min-height: 5000px;
@@ -343,16 +401,29 @@
       min-height: 1900px;
       height: 1900px;
     }
+    & .logo {
+      display: none;
+    }
   }
   &__title,
   &__img {
     position: absolute;
     z-index: 1;
+
+    &--first {
+      @media (min-width: 1920px) {
+        top: -13% !important;
+      }
+    }
   }
   &__title {
-    top: 115px;
-    left: 115px;
+    top: 230px;
+    left: 50px;
     z-index: 10;
+
+    @media (min-width: 1920px) {
+        top: 135px;
+    }
   }
   &__img img {
     display: inline-block;
@@ -485,13 +556,14 @@
     position: relative;
     top: -12.5px;
     max-width: 69.9%;
-    height: 54.85vh;
+    height: 53.25vh;
+    max-height: 425px;
     padding: 105px 0 40px;
     margin: 0 auto;
     background: #eaeaea;
   }
   &--product &__content {
-    margin-bottom: 3%;
+    margin-bottom: 2%;
   }
   &--product &__content img {
     float: none;
@@ -511,10 +583,12 @@
   position: relative;
   background: #191d22;
   padding: 30px 0;
+  text-align: center;
   &__nav {
     position: relative;
     z-index: 2;
     &:extend(.ul-unstyled);
+
     &-item {
       display: inline-block;
       margin-right: 30px;
@@ -559,10 +633,10 @@
       right: 15%;
     }
     &&--left {
-      left: 100/6%;
+      left: 100/5.5%;
     }
     &&--right {
-      right: 100/6%;
+      right: 100/5.5%;
     }
     &--dark {
       background: #0d1414;
@@ -577,10 +651,18 @@
     width: 100%;
     background: @line;
     &:first-child {
-      top: 22.5%;
+      top: 23.3%;
     }
     &:last-child {
-      bottom: 22.5%;
+      bottom: 23.3%;
+    }
+    @media (min-width: 1920px) {
+      &:first-child {
+        top: 16.5%;
+      }
+      &:last-child {
+        bottom: 16.5%;
+      }
     }
   }
 }
