@@ -3,13 +3,14 @@
   position: relative;
   display: inline-block;
   height: 40px;
-  width: 125px;
+  width: 146px;
   line-height: 40px;
   text-transform: uppercase;
   color: @btn;
   text-align: center;
   font-size: 12px;
   font-weight: 500;
+  letter-spacing: 2.5px;
   transition: .3s;
 
   &--borders {
@@ -30,12 +31,12 @@
       bottom: -6px;
       left: 3px;
       height: 25px;
-      width: 125px;
+      width: 146px;
       border-bottom: 2px solid @btn;
       border-right: 2px solid @btn;
     }
   }
-  &:hover {
+  &:hover, &:active, &:focus {
     color: @btn;
     opacity: .75;
   }
@@ -67,7 +68,7 @@
     background: @btn;
     color: #fff;
 
-    &:hover {
+    &:hover, &:active, &:focus {
       color: #fff;
     }
   }
@@ -140,7 +141,6 @@
     &:hover, &:active, &:focus {
       color: @btn;
     }
-    &:hover &-number,
     &:hover &-name {
       opacity: 1;
     }
@@ -148,7 +148,6 @@
       position: absolute;
       left: -25%;
       transform: translateX(-50%);
-      opacity: 0;
       transition: all .3s;
     }
     &-name {
@@ -269,5 +268,47 @@
     text-transform: uppercase;
     text-align: center;
     transition: .4s;
+  }
+}
+
+.notification {
+  position: absolute;
+  z-index: 4;
+  width: 240px;
+  height: 180px;
+  border: 1px solid rgb(209, 212, 212);
+  background: @bg-main;
+  text-align: center;
+  display: none;
+  
+  &__thumb {
+    display: block;
+    margin: 27px auto;
+  }
+  &__text {
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    color: #7f8184;
+  }
+  &__btn {
+    position: absolute;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    border-top: 1px solid rgb(209, 212, 212);
+    font-weight: 700;
+    font-size: 12px;
+    color: @font;
+    transition: .3s;
+    &:hover, &:focus {
+      color: @font;
+      opacity: .75;
+    }
+  }
+  & b {
+    color: @font;
   }
 }

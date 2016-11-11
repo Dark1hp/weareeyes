@@ -5,7 +5,7 @@
 
     (function formatArticleTitle() {
 
-      var maxNumberForTitle = 31;
+      var maxNumberForTitle = 33;
       var spanHeight = 26; //указываем тут нормальную высоту заголовка (т.е размер плашки span'a)
       for (var i = 0; i < $('.break-text').length; i++) {
         if ($('.break-text')[i].innerHTML.replace("<span>", "").replace("</span>", "").length > maxNumberForTitle) {

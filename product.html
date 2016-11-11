@@ -18,6 +18,8 @@
   <!--[if lt IE 10]>
 <link rel="stylesheet" href="assets/css/ie.css">
 <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet">
 </head>
 
 <body>
@@ -49,9 +51,9 @@
             </ul>
             <div class="slider__nav">
               <a href="#!" class="slider__control disabled slider__left js-slide-control js-slide-prev"></a>
-              <a href="#!" class="slider__color js-slide-control active" data-slide-number="1"><img src="./upload/product-color.png" alt="Color 1"></a>
-              <a href="#!" class="slider__color js-slide-control" data-slide-number="2"><img src="./upload/product-color.png" alt="Color 2"></a>
-              <a href="#!" class="slider__color js-slide-control" data-slide-number="3"><img src="./upload/product-color.png" alt="Color 3"></a>
+              <a href="#!" class="slider__color js-slide-control active" data-slide-number="1"></a>
+              <a href="#!" class="slider__color js-slide-control" data-slide-number="2"></a>
+              <a href="#!" class="slider__color js-slide-control" data-slide-number="3"></a>
               <a href="#!" class="slider__control slider__right js-slide-control js-slide-next"></a>
             </div>
           </div>
@@ -60,8 +62,12 @@
       <span class="product-price">80$</span>
     </div>
     <div class="product__btns">
-      <a href="#!" class="shop-btn shop-btn--borders shop-btn--green">Add to cart</a>
-      <a href="#!" class="shop-btn shop-btn--borders">Try at home</a>
+      <a data-product-action="buy" data-product-thumb="./assets/product-thumbnail.png" href="#!" class="js-product-btn shop-btn shop-btn--borders shop-btn--green">
+        Add to buy
+      </a>
+      <a data-product-action="try" data-product-thumb="./assets/product-thumbnail.png" data-try-number="1" data-try-max="5" href="#!" class="js-product-btn shop-btn shop-btn--borders">
+        add to try
+      </a>
     </div>
     <section class="product__description col-md-4 js-tab-wrapper">
       <ul class="product__descr-list js-tab-menu">
@@ -209,12 +215,20 @@
       </div>
     </section>
     <footer class="cart__item cart__item--subtotal">
-      <div class="col-md-offset-2 col-md-10">
+      <div class="cart__item-info">
           <span class="product-name">subtotal:</span>
           <span class="product-price">50 €</span>
           <a href="#!" class="shop-btn shop-btn--borders shop-btn--green cart__checkout">Checkout</a>
       </div>
     </footer>
+  </div>
+  <div class="notification">
+    <img class="notification__thumb" src="./assets/product-thumbnail.png" alt="Thumb">
+    <span class="notification__text">
+      <b>Good choice!</b> <br>
+      It's in your cart.
+    </span>
+    <a class="notification__btn" href="#!">Remove from buy cart</a>
   </div>
   <!-- Content END -->
   <!--Import jQuery-->

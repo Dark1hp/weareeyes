@@ -23,7 +23,7 @@
     &:extend(.block-center);
     height: 82%;
     margin: 2% auto 2%;
-    z-index: 2;
+    z-index: 0;
     & img {
       display: block;
       width: 78vw;
@@ -40,7 +40,10 @@
     color: #fff;
     letter-spacing: 3px;
     text-shadow: 0 0 18px #fff, 0 0 18px #33a695;
-    @media (min-width: 1920px) {
+    background: url('@{img-folder}header-glitch.png') no-repeat;
+    background-position: 50% 50%;
+    background-size: auto 75%;
+    @media (min-width: 1840px) {
       font-size: 50px;
       letter-spacing: 8px;
     }
@@ -89,7 +92,7 @@
   &--full-screen {
     height: 100vh;
   }
-  @media (min-width: 1920px) {
+  @media (min-width: 1840px) {
     &--our-story,
     &--campaign {
       height: 680px;
@@ -125,13 +128,14 @@
     font-weight: 700;
     font-size: 34px;
     line-height: 1;
-    margin: 75px auto 55px;
+    margin: 7% auto 9%;
     color: #fff;
     letter-spacing: 4px;
-
-    @media (min-width: 1920px) {
+    background: url('@{img-folder}manifesto-glitch.png') no-repeat;
+    background-position: 50% 50%;
+    background-size: auto 100%;
+    @media (min-width: 1840px) {
       font-size: 60px;
-      margin: 75px auto 110px;
       letter-spacing: 10px;
     }
   }
@@ -147,8 +151,7 @@
   z-index: 3;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  text-align: justify;
-  text-align-last: center;
+  text-align: center;
   &__item {
     margin-bottom: 50px;
     &-content {
@@ -161,14 +164,25 @@
     }
     &-manifesto {
       &:extend(.break-text);
-      & span {
+      letter-spacing: 1.5px;
+      & > * {
         display: block;
         padding: 0 30px;
         margin-bottom: 8px; 
         background: @font;
-        word-spacing: 5px;
+        text-align: justify;
+        height: 1.7em;
 
-        @media (min-width: 1920px) {
+        &:last-child {
+          text-align: center;
+        }
+        &:after {
+          content: '';
+          display: inline-block;
+          width: 100%;
+          height: 0;
+        }
+        @media (min-width: 1840px) {
           margin-bottom: 10px;
           word-spacing: normal;
           line-height: 1.7;
@@ -179,21 +193,17 @@
         color: @btn;
       }
 
-      @media (min-width: 1920px) {
+      @media (min-width: 1840px) {
         letter-spacing: 3.5px;
-        font-weight: 300;
         font-size: 20px;
       }
     }
     &:last-child {
       margin-bottom: 0;
     }
-    @media (min-width: 1920px) {
+    @media (min-width: 1840px) {
         max-width: 505px;
         margin: 0 auto 50px;
-        & .break-text {
-          font-weight: 300;
-        }
     }
   }
 }
@@ -293,17 +303,19 @@
     display: block;
     font-size: 26px;
     line-height: 34px;
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: 3px;
   }
   &__description {
     float: none;
-    margin: 0 auto 120px;
+    margin: 0 auto 100px;
     max-width: 540px;
     width: 540px;
     font-size: 14px;
     font-weight: 300;
     line-height: 2;
+    text-align: justify;
+    text-align-last: center;
     &-btns {
       margin-top: 50px;
     }
@@ -384,6 +396,7 @@
   padding-top: 50px;
   padding-bottom: 50px;
   z-index: 3;
+  text-align: center;
   &__wrapper {
     position: relative;
     overflow-x: hidden;
@@ -411,7 +424,7 @@
     z-index: 1;
 
     &--first {
-      @media (min-width: 1920px) {
+      @media (min-width: 1840px) {
         top: -13% !important;
       }
     }
@@ -421,7 +434,7 @@
     left: 50px;
     z-index: 10;
 
-    @media (min-width: 1920px) {
+    @media (min-width: 1840px) {
         top: 135px;
     }
   }
@@ -510,9 +523,13 @@
     }
     &-item.active {
       opacity: 1;
+      cursor: pointer;
+      z-index: 1;
+      // overflow: hidden;
     }
     & img {
       float: right;
+      pointer-events: none;
       @media (max-width: 1024px) {
         float: none;
       }
@@ -522,7 +539,10 @@
     vertical-align: middle;
   }
   &__color {
+    display: inline-block;
+    border-radius: 50%;
     & img {
+      display: block;
       width: 13px;
       height: 13px;
       transition: all .3s ease-in-out;
@@ -556,8 +576,6 @@
     position: relative;
     top: -12.5px;
     max-width: 69.9%;
-    height: 53.25vh;
-    max-height: 425px;
     padding: 105px 0 40px;
     margin: 0 auto;
     background: #eaeaea;
@@ -569,7 +587,16 @@
     float: none;
   }
   &--product &__color {
+    width: 10.5px;
+    height: 10.5px;
     margin-right: 12px;
+    background: #54575b;
+    transition: .3s;
+    &.active {
+      width: 16px;
+      height: 16px;
+      background: #15191e;
+    }
     &:nth-last-child(2) {
       margin-right: 0;
     }
@@ -625,7 +652,7 @@
     width: 1px;
     background: @line;
     z-index: 0;
-
+    
     &:first-child {
       left: 15%;
     }
@@ -656,7 +683,7 @@
     &:last-child {
       bottom: 23.3%;
     }
-    @media (min-width: 1920px) {
+    @media (min-width: 1840px) {
       &:first-child {
         top: 16.5%;
       }
@@ -742,16 +769,20 @@
     right: -17px;
     width: 100%;
     height: 100%;
-    padding: 35px 0;
+    padding: 30% 0 30%;
     overflow-y: auto;
     text-align: center;
-
+    &-item {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
     &-link {
       position: relative;
       display: inline-block;
       line-height: 90px;
       font-size: 20px;
-      font-weight: 400;
+      font-weight: 300;
       letter-spacing: 3px;
       color: #fff;
       transition: all .3s;
@@ -766,7 +797,7 @@
         background: #fff;
         transition: all .5s;
       }
-      &:hover {
+      &:hover, &:focus {
         color: #fff;
         text-shadow: 0 0 10px #fff;
         &:before {
@@ -783,9 +814,9 @@
   top: 0;
   right: -100%;
   z-index: 10;
-  width: 50%;
+  width: 600px;
   height: 100%;
-  padding: 90px 130px 90px 108px;
+  padding: 3% 5% 3% 3%;
   background: #f1efef;
   color: #15191e;
   transition: all .5s ease-in-out;
@@ -828,8 +859,8 @@
     }
     &-info {
       position: relative;
-      float: left;
-      width: 80%;
+      float: right;
+      width: 75%;
     }
     &-title {
       font-size: 14px;

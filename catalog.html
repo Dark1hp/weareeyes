@@ -18,25 +18,24 @@
   <!--[if lt IE 10]>
 <link rel="stylesheet" href="assets/css/ie.css">
 <![endif]-->
-<!-- <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700" rel="stylesheet">
 </head>
 
 <body>
   <!-- Content START -->
   <header class="header">
     <a href="#!" class="logo"><img src="./static/img/logo.png" alt="WeAreEyes"></a>
-    <a href="#!" class="shop-btn shop-btn--header">Cart (0) ></a>
+    <a href="#!" class="shop-btn shop-btn--header shop-btn--fixed">Cart (0) ></a>
   </header>
   <main class="main">
     <div class="container-center">
       <h3 class="break-text">
-          <span>
-            hello! this is our first collection and 
-we are very proud of it. hope one of 
-these fine eyewear will be yours soon.
-check them below!
-          </span>
-        </h3>
+          <span>hello! this is our first collection and</span>
+          <span>we are very proud of it. hope one of</span>
+          <span>these fine eyewear will be yours soon.</span>
+          <span>check them below!</span>
+      </h3>
     </div>
     <div class="catalog">
       <h3 class="catalog__title"><img src="./static/img/forces.png" alt="The Forces"></h3>
@@ -49,8 +48,8 @@ check them below!
           </a>
           <div class="slider">
             <ul class="slider__content clearfix">
-              <li class="slider__content-item active">
-                <img src="./upload/product.png" alt="Product1">
+              <li data-model-hover="./assets/product-hover.png" class="slider__content-item active">
+                <img src="./assets/product-4.png" alt="Product1">
               </li>
               <li class="slider__content-item">
                 <img src="./assets/product-2.png" alt="Product2">
@@ -58,12 +57,16 @@ check them below!
               <li class="slider__content-item">
                 <img src="./assets/product-3.png" alt="Product3">
               </li>
+              <li data-model-hover="./assets/product-hover.png" class="slider__content-item">
+                <img src="./assets/product-4.png" alt="Product4">
+              </li>
             </ul>
             <div class="slider__nav">
               <a href="#!" class="slider__control disabled slider__left js-slide-control js-slide-prev"></a>
-              <a href="#!" class="slider__color js-slide-control active" data-slide-number="1"><img src="./upload/product-color.png" alt="Color 1"></a>
-              <a href="#!" class="slider__color js-slide-control" data-slide-number="2"><img src="./upload/product-color.png" alt="Color 2"></a>
-              <a href="#!" class="slider__color js-slide-control" data-slide-number="3"><img src="./upload/product-color.png" alt="Color 3"></a>
+              <a href="#!" class="slider__color js-slide-control active" data-slide-number="1"><img src="./assets/product-color.png" alt="Color 1"></a>
+              <a href="#!" class="slider__color js-slide-control" data-slide-number="2"><img src="./assets/product-color2.png" alt="Color 2"></a>
+              <a href="#!" class="slider__color js-slide-control" data-slide-number="3"><img src="./assets/product-color.png" alt="Color 3"></a>
+              <a href="#!" class="slider__color js-slide-control" data-slide-number="4"><img src="./assets/product-color2.png" alt="Color 4"></a>
               <a href="#!" class="slider__control slider__right js-slide-control js-slide-next"></a>
             </div>
           </div>
