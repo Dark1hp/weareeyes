@@ -39,11 +39,11 @@
     font-size: 34px;
     color: #fff;
     letter-spacing: 3px;
-    text-shadow: 0 0 18px #fff, 0 0 18px #33a695;
+    /*text-shadow: 0 0 18px #fff, 0 0 18px #33a695;*/
     background: url('@{img-folder}header-glitch.png') no-repeat;
     background-position: 50% 50%;
     background-size: auto 75%;
-    @media (min-width: 1840px) {
+    @media (min-width: 1800px) {
       font-size: 50px;
       letter-spacing: 8px;
     }
@@ -55,6 +55,7 @@
     height: 100vh;
     background: url('@{img-folder}our-story-bg.png');
     background-size: cover;
+    background-position: 50%;
   }
   &--campaign {
     height: 100vh;
@@ -92,7 +93,7 @@
   &--full-screen {
     height: 100vh;
   }
-  @media (min-width: 1840px) {
+  @media (min-width: 1800px) {
     &--our-story,
     &--campaign {
       height: 680px;
@@ -123,6 +124,9 @@
   text-align: center;
   // z-index: 2;
 
+  @media (min-width: 2250px) {
+    height: 75vh;
+  }
   &__title {
     font-family: 'UbuntuMono', 'Ubuntu', Arial, sans-serif;
     font-weight: 700;
@@ -134,7 +138,7 @@
     background: url('@{img-folder}manifesto-glitch.png') no-repeat;
     background-position: 50% 50%;
     background-size: auto 100%;
-    @media (min-width: 1840px) {
+    @media (min-width: 1800px) {
       font-size: 60px;
       letter-spacing: 10px;
     }
@@ -182,7 +186,7 @@
           width: 100%;
           height: 0;
         }
-        @media (min-width: 1840px) {
+        @media (min-width: 1800px) {
           margin-bottom: 10px;
           word-spacing: normal;
           line-height: 1.7;
@@ -193,7 +197,7 @@
         color: @btn;
       }
 
-      @media (min-width: 1840px) {
+      @media (min-width: 1800px) {
         letter-spacing: 3.5px;
         font-size: 20px;
       }
@@ -201,7 +205,7 @@
     &:last-child {
       margin-bottom: 0;
     }
-    @media (min-width: 1840px) {
+    @media (min-width: 1800px) {
         max-width: 505px;
         margin: 0 auto 50px;
     }
@@ -247,7 +251,6 @@
       cursor: pointer;
     }
     &-item {
-      float: left;
       display: inline-block;
       width: 36%;
       max-height: 430px;
@@ -424,7 +427,7 @@
     z-index: 1;
 
     &--first {
-      @media (min-width: 1840px) {
+      @media (min-width: 1800px) {
         top: -13% !important;
       }
     }
@@ -434,7 +437,7 @@
     left: 50px;
     z-index: 10;
 
-    @media (min-width: 1840px) {
+    @media (min-width: 1800px) {
         top: 135px;
     }
   }
@@ -683,7 +686,7 @@
     &:last-child {
       bottom: 23.3%;
     }
-    @media (min-width: 1840px) {
+    @media (min-width: 1800px) {
       &:first-child {
         top: 16.5%;
       }

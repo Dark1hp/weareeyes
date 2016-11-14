@@ -233,6 +233,42 @@
           container.hide();
         }
       })
+
+      /* Navigation effects */
+      // Change the color of nav
+      $(document).on('scroll', function() {
+        if($('#collection').length) {
+          if($(this).scrollTop() + $(window).height()/2 >= $('#collection').offset().top){
+            $('.nav').addClass('nav--black');
+            $('[href="#collection"]').siblings().removeClass('active');
+            $('[href="#collection"]').addClass('active');
+          } else if ($(this).scrollTop() + $(window).height() > $('#manifesto').offset().top) {
+            $('.nav').removeClass('nav--black');
+            $('[href="#manifesto"]').siblings().removeClass('active');
+            $('[href="#manifesto"]').addClass('active');
+          } else {
+            $('.nav').removeClass('nav--black');
+            $('[href="#home"]').siblings().removeClass('active');
+            $('[href="#home"]').addClass('active');
+          }
+        }
+      });
+      // Scroll to anchor links
+      $(document).on('click', '.nav__item', function(event) {
+        event.preventDefault();
+
+        // Get id of container from href attribute
+        var getAnchor = $(this).attr("href");
+        
+        // Remove class active from others and add to this link
+        $(this).siblings().removeClass('active');
+        $(this).addClass('active')
+
+        // Animate scrolling to container
+        $('html, body').animate({
+          scrollTop: $(getAnchor).offset().top
+        }, 1000);
+      })
     })();
 
     function checkSlide(getTarget, getSlider) {
