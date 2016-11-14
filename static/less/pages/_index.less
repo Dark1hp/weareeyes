@@ -32,20 +32,26 @@
   }
   &__title {
     position: absolute;
-    bottom: 35px;
-    width: 100%;
+    bottom: 20%;
+    left: 3%;
+    width: 445px;
     text-align: center;
-    font-weight: 400;
-    font-size: 34px;
+    font-weight: 500;
+    font-size: 22.5px;
     color: #fff;
     letter-spacing: 3px;
-    /*text-shadow: 0 0 18px #fff, 0 0 18px #33a695;*/
-    background: url('@{img-folder}header-glitch.png') no-repeat;
-    background-position: 50% 50%;
-    background-size: auto 75%;
-    @media (min-width: 1800px) {
-      font-size: 50px;
-      letter-spacing: 8px;
+    & > * {
+      display: block;
+      padding: 0 30px;
+      margin-bottom: 8px; 
+      background: @font;
+      height: 1.7em;
+      &:after {
+        content: '';
+        display: inline-block;
+        width: 100%;
+        height: 0;
+      }
     }
   }
   &__text {
@@ -71,10 +77,13 @@
     padding-bottom: 30px;
   }
   &__scroll {
-    display: inline-block;
+    position: absolute;
+    display: block;
     letter-spacing: 2.5px;
     font-size: 12px;
     font-weight: 500;
+    bottom: 2%;
+    width: 100%;
     color: @btn;
     &:hover {
       color: @btn;
