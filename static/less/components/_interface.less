@@ -35,6 +35,14 @@
       border-bottom: 2px solid @btn;
       border-right: 2px solid @btn;
     }
+    @media (max-width: 480px) {
+      &:before {
+        height: 40px;
+      }
+      &:after {
+        width: 126px;
+      }
+    }
   }
   &:hover, &:active, &:focus {
     color: @btn;
@@ -72,6 +80,18 @@
       color: #fff;
     }
   }
+  @media (max-width: 480px) {
+    width: 126px;
+    height: 30px;
+    line-height: 30px;
+    font-weight: 600;
+    &--home {
+      position: absolute;
+      top: 85vh;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
 }
 
 .burger {
@@ -88,6 +108,7 @@
   line-height: 1;
   top: 50%;
   transform: translateY(-50%);
+
 
   &--close &__line {
     background: @btn;
@@ -113,10 +134,24 @@
     &:last-child {
       width: 65%;
     }
+    @media (max-width: 480px) {
+      margin-top: 9px;
+    }
   }
 
   &:hover, &:focus, &:active {
     color: @btn;
+  }
+
+  @media (max-width: 480px) {
+    z-index: 5;
+    top: 20px;
+    left: 10px;
+    color: transparent;
+    width: 32px;
+    &:hover, &:focus, &:active {
+      color: transparent;
+    }
   }
 }
 
@@ -124,6 +159,10 @@
   position: absolute;
   right: 90px;
   bottom: 30px;
+
+  @media (max-width: 480px) {
+    display: none;
+  }
 }
 
 .nav {
@@ -199,6 +238,9 @@
   }
   &--black &__item.active &__item-line {
     background: #000;
+  }
+  @media (max-width: 480px) {
+    display: none;
   }
 }
 

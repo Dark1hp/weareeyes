@@ -127,6 +127,14 @@
       });
     })();
 
+    if($(window).width() <= 480) {
+      (function overflowFix(element) {
+        var getTarget = $(element).find('> img');
+
+        getTarget.wrap('<div class="overflow-x-hidden"></div>')
+      })('.content__img'); // Set the selector
+    }
+
     (function initListeners() {
 
       $(document).on('click', '.js-expand-btn', function(e) {
