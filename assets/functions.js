@@ -129,10 +129,16 @@
 
     if($(window).width() <= 480) {
       (function overflowFix(element) {
-        var getTarget = $(element).find('> img');
+        element.wrap('<div class="overflow-x-hidden"></div>')
+      })($('.content__img').find('> img'));
 
-        getTarget.wrap('<div class="overflow-x-hidden"></div>')
-      })('.content__img'); // Set the selector
+      (function overflowFix(element) {
+        element.wrap('<div class="overflow-x-scroll"></div>')
+      })($('.share__wrapper'));
+
+      (function overflowFix(element) {
+        element.wrap('<div class="overflow-x-scroll"></div>')
+      })($('.product__descr-list')); // Set the selector
     }
 
     (function initListeners() {

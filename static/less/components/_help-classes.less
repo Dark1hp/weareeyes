@@ -47,6 +47,9 @@
   @media (min-width: 1800px) {
     max-width: 640px;
   }
+  @media (max-width: 480px) {
+    max-width: 300px;
+  }
 }
 .section-title {
   margin-bottom: 25px;
@@ -76,6 +79,7 @@
     background: @font;
     text-align: justify;
     height: 1.7em;
+    line-height: 1.7em;
 
     &:last-child {
       text-align: center;
@@ -86,9 +90,20 @@
       width: 100%;
       height: 0;
     }
+
+    @media (max-width: 480px) {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 0 20px;
+    }
   }
   &.m-0, &.m-0 span {
     margin: 0;
+  }
+  @media (max-width: 480px) {
+    width: 300px;
+    margin: 0 auto;
+    letter-spacing: .15px;
   }
 }
 .vertical-center {
@@ -133,4 +148,7 @@
   width: 100%;
   height: 100%;
   overflow-x: hidden;
+}
+.overflow-x-scroll {
+  overflow-x: scroll;
 }
