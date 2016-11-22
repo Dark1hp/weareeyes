@@ -2,7 +2,107 @@
   'use strict';
 
   $(document).ready(function () {
+    $('.add-to-cart').on('click' , function(event){
+     event.preventDefault();
+     $.ajax({
+      url: '/cart/add.js',
+      type: 'POST',
+      dataType: 'json',
+      data: $('form[action="/cart/add"]').serialize(),
+      success: function(data) {
+        console.log(data);
+        jQuery.getJSON('/cart.js', function(cart) {
+          $('.cart__info-count').html(cart.item_count);
+          $('.product-price-cart').html(cart.original_total_price);
+          var arr = cart.items;
+          var html_p = '' ; 
+          html_p +=  '<h3 class="cart__item-title">Shopping bag</h3>';
+          html_p +='<span class="cart__item-count">('+cart.item_count+' item selected)</span>';
+          for(var i = 0 ; i< arr.length ; i++ ){
+           html_p += '<div class="cart__item-product clearfix">'
+           html_p += '<div class="cart__item-photo"><img src="'+ arr[i].image +'" alt="{{ item.title | escape }}"></div>';
+           html_p +='<div class="cart__item-info">';
+           html_p += '<span class="product-name">'+ arr[i].product_title +'</span>';
+           html_p += '<span class="product-price">'+ arr[i].price +'</span>';
+           html_p += '<a href="'+arr[i].id+'" class="cart__item-remove "></a>'; 
+           html_p +=  "</div>";
+           html_p +=  "</div>";
+         }
+         $('.cart__item_add').html(html_p);
+         console.log(html_p);
+       } );
+$('.js-cart-click').trigger('click');
+}
+})
 
+
+
+});
+
+$('.add-to-try').on('click' , function(event){
+ event.preventDefault();
+ $.ajax({
+  url: '/cart/add.js',
+  type: 'POST',
+  dataType: 'json',
+  data: $('form[action="/cart/try"]').serialize(),
+  success: function(data) {
+    console.log(data);
+    jQuery.getJSON('/cart.js', function(cart) {
+      $('.cart__info-count').html(cart.item_count);
+      $('.product-price-cart').html(cart.original_total_price);
+      var arr = cart.items;
+      var html_p = '' ; 
+      html_p +=  '<h3 class="cart__item-title">Shopping bag</h3>';
+      html_p +='<span class="cart__item-count">('+cart.item_count+' item selected)</span>';
+      for(var i = 0 ; i< arr.length ; i++ ){
+       html_p += '<div class="cart__item-product clearfix">'
+       html_p += '<div class="cart__item-photo"><img src="'+ arr[i].image +'" alt="{{ item.title | escape }}"></div>';
+       html_p +='<div class="cart__item-info">';
+       html_p += '<span class="product-name">'+ arr[i].product_title +'</span>';
+       html_p += '<span class="product-price">'+ arr[i].price +'</span>';
+       html_p += '<a href="'+arr[i].id+'" class="cart__item-remove "></a>'; 
+       html_p +=  "</div>";
+       html_p +=  "</div>";
+     }
+     $('.cart__item_add').html(html_p);
+     console.log(html_p);
+   } );
+    $('.js-cart-click').trigger('click');
+  }
+})
+
+
+
+});
+
+
+$(document).on('click' , '.cart__item-remove' , function(){
+ var var_href = $(this).attr('href');
+ 
+ jQuery.post('/cart/update.js', "updates["+var_href+"]=0");
+ jQuery.getJSON('/cart.js', function(cart) {
+  $('.cart__info-count').html(cart.item_count);
+  $('.product-price-cart').html(cart.original_total_price);
+  var arr = cart.items;
+  var html_p = '' ; 
+  html_p +=  '<h3 class="cart__item-title">Shopping bag</h3>';
+  html_p +='<span class="cart__item-count">('+cart.item_count+' item selected)</span>';
+  for(var i = 0 ; i< arr.length ; i++ ){
+   html_p += '<div class="cart__item-product clearfix">'
+   html_p += '<div class="cart__item-photo"><img src="'+ arr[i].image +'" alt="{{ item.title | escape }}"></div>';
+   html_p +='<div class="cart__item-info">';
+   html_p += '<span class="product-name">'+ arr[i].product_title +'</span>';
+   html_p += '<span class="product-price">'+ arr[i].price +'</span>';
+   html_p += '<a href="'+arr[i].id+'" class="cart__item-remove "></a>'; 
+   html_p +=  "</div>";
+   html_p +=  "</div>";
+ }
+ $('.cart__item_add').html(html_p);
+ console.log(html_p);
+} );
+ return false;
+});
     // (function formatArticleTitle() {
 
     //   var maxNumberForTitle = 25;
@@ -188,14 +288,8 @@
         e.preventDefault();
         var getSlider = $(this).closest('.slider');
         var getCurrent = getSlider.find('.slider__content-item.active');
-        if($(this).data('slide-number')) {
-          var getNumber = $(this).data('slide-number');
-          $(this).siblings().removeClass('active');
-          $(this).addClass('active');
-          getCurrent.removeClass('active');
-          var getTarget = getSlider.find('.slider__content-item').eq(+getNumber - 1).addClass('active');
-          checkSlide(getTarget, getSlider);
-        } else if($(this).hasClass('js-slide-prev') && !$(this).hasClass('disabled')) {
+
+        if($(this).hasClass('js-slide-prev') && !$(this).hasClass('disabled')) {
           getSlider.find('.js-slide-control.active').removeClass('active').prev().addClass('active');
           getCurrent.removeClass('active').prev().addClass('active');
           checkSlide(getCurrent.prev(), getSlider);
@@ -203,10 +297,24 @@
           getSlider.find('.js-slide-control.active').removeClass('active').next().addClass('active');
           getCurrent.removeClass('active').next().addClass('active');
           checkSlide(getCurrent.next(), getSlider);
-        } else {
-          return;
-        }
+        } 
+
       })
+
+
+      //Addition
+      $(document).on('click', '.slider__color', function(e) {
+        e.preventDefault();
+        var getSlider = $(this).closest('.slider');
+        var getCurrent = getSlider.find('.slider__content-item.active');
+
+        var getNumber = getSlider.find('.slider__color').index($(this));
+        $(this).siblings().removeClass('active');
+        $(this).addClass('active');
+        getCurrent.removeClass('active');
+        var getTarget = getSlider.find('.slider__content-item').eq(getNumber).addClass('active');
+        checkSlide(getTarget, getSlider);
+      });
 
       //Notifications
       $(document).on('click', function(e) {
