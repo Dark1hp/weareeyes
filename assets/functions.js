@@ -11,7 +11,9 @@
       data: $('form[action="/cart/add"]').serialize(),
       success: function(data) {
         console.log(data);
+        setTimeout(function () {
         jQuery.getJSON('/cart.js', function(cart) {
+             console.log(cart);
           $('.cart__info-count').html(cart.item_count);
           $('.product-price-cart').html(cart.original_total_price);
           var arr = cart.items;
@@ -31,7 +33,9 @@
          $('.cart__item_add').html(html_p);
          console.log(html_p);
        } );
-$('.js-cart-click').trigger('click');
+           }, 500);
+          
+//$('.js-cart-click').trigger('click');
 }
 })
 
@@ -68,7 +72,9 @@ $('.add-to-try').on('click' , function(event){
      $('.cart__item_add').html(html_p);
      console.log(html_p);
    } );
-    $('.js-cart-click').trigger('click');
+    //$('.js-cart-click').trigger('click');
+     $('.js-product-btn').trigger('click');
+    
   }
 })
 
@@ -77,10 +83,11 @@ $('.add-to-try').on('click' , function(event){
 });
 
 
-$(document).on('click' , '.cart__item-remove' , function(){
+$(document).on('click' , '.cart__item-remove , .notification__btn' , function(){
  var var_href = $(this).attr('href');
  
  jQuery.post('/cart/update.js', "updates["+var_href+"]=0");
+  setTimeout(function () {
  jQuery.getJSON('/cart.js', function(cart) {
   $('.cart__info-count').html(cart.item_count);
   $('.product-price-cart').html(cart.original_total_price);
@@ -101,6 +108,8 @@ $(document).on('click' , '.cart__item-remove' , function(){
  $('.cart__item_add').html(html_p);
  console.log(html_p);
 } );
+    }, 500);
+  $(document).trigger('click');
  return false;
 });
     // (function formatArticleTitle() {
@@ -328,9 +337,10 @@ $(document).on('click' , '.cart__item-remove' , function(){
           switch(getAction) {
             case 'buy':
               var getThumb = getTarget.data('product-thumb');
+              var getid = $("input[name='id']").val();
               var setThumb = $('<img class="notification__thumb" alt="Thumb of product" src="' + getThumb + '">');
               var setText = $("<span class='notification__text'>Good choise! <br> It's in your cart</span>");
-              var setBtn = $("<a class='notification__btn' href='#!'>Remove from buy cart</a>");
+              var setBtn = $("<a class='notification__btn' href='"+getid+"'>Remove from buy cart</a>");
               container.html(setThumb).append(setText).append(setBtn);
               container.appendTo(getParent).css({
                 top: (getPos.top + getTarget.outerHeight() + 20) + "px",
