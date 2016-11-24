@@ -1,47 +1,67 @@
 (function ($) {
   'use strict';
-
+var data_quantity;
   $(document).ready(function () {
     $('.add-to-cart').on('click' , function(event){
      event.preventDefault();
+      var id = $("input[name='id']").val();
      $.ajax({
       url: '/cart/add.js',
       type: 'POST',
       dataType: 'json',
       data: $('form[action="/cart/add"]').serialize(),
       success: function(data) {
-        console.log(data);
+       // console.log(data);
         setTimeout(function () {
         jQuery.getJSON('/cart.js', function(cart) {
-             console.log(cart);
+          
+          
+        //     console.log(cart);
           $('.cart__info-count').html(cart.item_count);
-          $('.product-price-cart').html(cart.original_total_price);
+          $('.product-price-cart').html(Shopify.formatMoney(cart.original_total_price, window.money_format) );
           var arr = cart.items;
           var html_p = '' ; 
           html_p +=  '<h3 class="cart__item-title">Shopping bag</h3>';
           html_p +='<span class="cart__item-count">('+cart.item_count+' item selected)</span>';
           for(var i = 0 ; i< arr.length ; i++ ){
-           html_p += '<div class="cart__item-product clearfix">'
-           html_p += '<div class="cart__item-photo"><img src="'+ arr[i].image +'" alt="{{ item.title | escape }}"></div>';
-           html_p +='<div class="cart__item-info">';
-           html_p += '<span class="product-name">'+ arr[i].product_title +'</span>';
-           html_p += '<span class="product-price">'+ arr[i].price +'</span>';
-           html_p += '<a href="'+arr[i].id+'" class="cart__item-remove "></a>'; 
-           html_p +=  "</div>";
-           html_p +=  "</div>";
+            if( arr[i].id == id ){
+               data_quantity = arr[i].quantity ;
+              console.log(data_quantity);
+               }
+               
+         var  html_p_item = '';
+           html_p_item += '<div class="cart__item-product clearfix">'
+           html_p_item += '<div class="cart__item-photo"><img src="'+ arr[i].image +'" alt="{{ item.title | escape }}"></div>';
+           html_p_item +='<div class="cart__item-info">';
+           html_p_item += '<span class="product-name">'+ arr[i].product_title +'</span>';
+           html_p_item += '<span class="product-price">'+Shopify.formatMoney(arr[i].price, window.money_format)  +'</span>';
+           html_p_item += '<a data-quantity = "'+arr[i].quantity+'" href="'+arr[i].id+'" class="cart__item-remove "></a>'; 
+           html_p_item +=  "</div>";
+           html_p_item +=  "</div>";
+            var  html_p_item_ar = '';
+           if(arr[i].quantity > 1){
+            for(var iq = 0 ; iq< arr[i].quantity ; iq++ ){
+              html_p_item_ar +=html_p_item;
+           }
+         }else{
+          html_p_item_ar+=html_p_item;
+         }
+            html_p += html_p_item_ar ;
+
          }
          $('.cart__item_add').html(html_p);
-         console.log(html_p);
+       //  console.log(html_p);
        } );
            }, 500);
           
 //$('.js-cart-click').trigger('click');
 }
 })
-
-
-
 });
+
+
+
+
 
 $('.add-to-try').on('click' , function(event){
  event.preventDefault();
@@ -51,10 +71,10 @@ $('.add-to-try').on('click' , function(event){
   dataType: 'json',
   data: $('form[action="/cart/try"]').serialize(),
   success: function(data) {
-    console.log(data);
+  //  console.log(data);
     jQuery.getJSON('/cart.js', function(cart) {
       $('.cart__info-count').html(cart.item_count);
-      $('.product-price-cart').html(cart.original_total_price);
+      $('.product-price-cart').html(Shopify.formatMoney(cart.original_total_price, window.money_format));
       var arr = cart.items;
       var html_p = '' ; 
       html_p +=  '<h3 class="cart__item-title">Shopping bag</h3>';
@@ -64,13 +84,14 @@ $('.add-to-try').on('click' , function(event){
        html_p += '<div class="cart__item-photo"><img src="'+ arr[i].image +'" alt="{{ item.title | escape }}"></div>';
        html_p +='<div class="cart__item-info">';
        html_p += '<span class="product-name">'+ arr[i].product_title +'</span>';
-       html_p += '<span class="product-price">'+ arr[i].price +'</span>';
+       html_p += '<span class="product-price">'+Shopify.formatMoney(arr[i].price, window.money_format)  +'</span>';
        html_p += '<a href="'+arr[i].id+'" class="cart__item-remove "></a>'; 
        html_p +=  "</div>";
        html_p +=  "</div>";
      }
      $('.cart__item_add').html(html_p);
-     console.log(html_p);
+      
+   //  console.log(html_p);
    } );
     //$('.js-cart-click').trigger('click');
      $('.js-product-btn').trigger('click');
@@ -85,28 +106,40 @@ $('.add-to-try').on('click' , function(event){
 
 $(document).on('click' , '.cart__item-remove , .notification__btn' , function(){
  var var_href = $(this).attr('href');
+ var var_quantity = $(this).data('quantity');
  
- jQuery.post('/cart/update.js', "updates["+var_href+"]=0");
+ jQuery.post('/cart/update.js', "updates["+var_href+"]="+(var_quantity-1)+"");
   setTimeout(function () {
  jQuery.getJSON('/cart.js', function(cart) {
   $('.cart__info-count').html(cart.item_count);
-  $('.product-price-cart').html(cart.original_total_price);
+  $('.product-price-cart').html(Shopify.formatMoney(cart.original_total_price, window.money_format));
   var arr = cart.items;
-  var html_p = '' ; 
-  html_p +=  '<h3 class="cart__item-title">Shopping bag</h3>';
-  html_p +='<span class="cart__item-count">('+cart.item_count+' item selected)</span>';
-  for(var i = 0 ; i< arr.length ; i++ ){
-   html_p += '<div class="cart__item-product clearfix">'
-   html_p += '<div class="cart__item-photo"><img src="'+ arr[i].image +'" alt="{{ item.title | escape }}"></div>';
-   html_p +='<div class="cart__item-info">';
-   html_p += '<span class="product-name">'+ arr[i].product_title +'</span>';
-   html_p += '<span class="product-price">'+ arr[i].price +'</span>';
-   html_p += '<a href="'+arr[i].id+'" class="cart__item-remove "></a>'; 
-   html_p +=  "</div>";
-   html_p +=  "</div>";
- }
- $('.cart__item_add').html(html_p);
- console.log(html_p);
+          var html_p = '' ; 
+          html_p +=  '<h3 class="cart__item-title">Shopping bag</h3>';
+          html_p +='<span class="cart__item-count">('+cart.item_count+' item selected)</span>';
+          for(var i = 0 ; i< arr.length ; i++ ){
+         var  html_p_item = '';
+           html_p_item += '<div class="cart__item-product clearfix">'
+           html_p_item += '<div class="cart__item-photo"><img src="'+ arr[i].image +'" alt="{{ item.title | escape }}"></div>';
+           html_p_item +='<div class="cart__item-info">';
+           html_p_item += '<span class="product-name">'+ arr[i].product_title +'</span>';
+           html_p_item += '<span class="product-price">'+Shopify.formatMoney(arr[i].price, window.money_format)  +'</span>';
+           html_p_item += '<a data-quantity = "'+arr[i].quantity+'" href="'+arr[i].id+'" class="cart__item-remove "></a>'; 
+           html_p_item +=  "</div>";
+           html_p_item +=  "</div>";
+            var  html_p_item_ar = '';
+           if(arr[i].quantity > 1){
+            for(var iq = 0 ; iq< arr[i].quantity ; iq++ ){
+              html_p_item_ar +=html_p_item;
+           }
+         }else{
+          html_p_item_ar+=html_p_item;
+         }
+            html_p += html_p_item_ar ;
+
+         }
+         $('.cart__item_add').html(html_p);
+// console.log(html_p);
 } );
     }, 500);
   $(document).trigger('click');
@@ -270,50 +303,58 @@ $(document).on('click' , '.cart__item-remove , .notification__btn' , function(){
       });
 
       // Hover Effect
-      $('[data-model-hover]').mouseover(function(e) {
-        e.preventDefault();
-        var getSrc = $(this).data('model-hover');
-        var getImg = $(this).find('img');
-        var getSrcImg = getImg.attr('src');
-        $(this).data('model-hover', getSrcImg);
-          getImg.attr('src', getSrc).attr('style', 'float: none; margin-top: 30px;');
-        // getImg.fadeOut(300, function() {
-        //   getImg.fadeIn(300);
-        // });
-      }).mouseout(function(e) {
-        e.preventDefault();
-        var getSrc = $(this).data('model-hover');
-        var getImg = $(this).find('img');
-        var getSrcImg = getImg.attr('src');
-        $(this).data('model-hover', getSrcImg);
-        getImg.attr('src', getSrc).removeAttr('style');
-        // getImg.fadeOut(300, function() {
-        //   getImg.fadeIn(300);
-        // });
-      });
-
+      if($(window).width() > 480) { 
+        $('[data-model-hover]').mouseover(function(e) {
+          e.preventDefault();
+          var getSrc = $(this).data('model-hover');
+          var getImg = $(this).find('img');
+          var getSrcImg = getImg.attr('src');
+          $(this).data('model-hover', getSrcImg);
+            getImg.attr('src', getSrc).attr('style', 'float: none; margin-top: 30px;');
+          // getImg.fadeOut(300, function() {
+          //   getImg.fadeIn(300);
+          // });
+        }).mouseout(function(e) {
+          e.preventDefault();
+          var getSrc = $(this).data('model-hover');
+          var getImg = $(this).find('img');
+          var getSrcImg = getImg.attr('src');
+          $(this).data('model-hover', getSrcImg);
+          getImg.attr('src', getSrc).removeAttr('style');
+          // getImg.fadeOut(300, function() {
+          //   getImg.fadeIn(300);
+          // });
+        });
+      }
+        
       // Slider
       $(document).on('click', '.js-slide-control', function(e) {
         e.preventDefault();
+        
         var getSlider = $(this).closest('.slider');
         var getCurrent = getSlider.find('.slider__content-item.active');
-
+    var getTarget;
+        
         if($(this).hasClass('js-slide-prev') && !$(this).hasClass('disabled')) {
           getSlider.find('.js-slide-control.active').removeClass('active').prev().addClass('active');
-          getCurrent.removeClass('active').prev().addClass('active');
+          getTarget = getCurrent.removeClass('active').prev().addClass('active');
           checkSlide(getCurrent.prev(), getSlider);
         } else if($(this).hasClass('js-slide-next') && !$(this).hasClass('disabled')) {
           getSlider.find('.js-slide-control.active').removeClass('active').next().addClass('active');
-          getCurrent.removeClass('active').next().addClass('active');
+          getTarget = getCurrent.removeClass('active').next().addClass('active');
           checkSlide(getCurrent.next(), getSlider);
-        } 
-
+        }
+    
+        if(getTarget) {
+          getTarget.closest('.slider').siblings('.catalog__list-link').attr("href", getTarget.attr("data-model-url"));
+        }
       })
 
 
       //Addition
       $(document).on('click', '.slider__color', function(e) {
         e.preventDefault();
+        
         var getSlider = $(this).closest('.slider');
         var getCurrent = getSlider.find('.slider__content-item.active');
 
@@ -322,9 +363,19 @@ $(document).on('click' , '.cart__item-remove , .notification__btn' , function(){
         $(this).addClass('active');
         getCurrent.removeClass('active');
         var getTarget = getSlider.find('.slider__content-item').eq(getNumber).addClass('active');
+        getTarget.closest('.slider').siblings('.catalog__list-link').attr("href", getTarget.attr("data-model-url"));
+
         checkSlide(getTarget, getSlider);
       });
 
+      $(document).on('click', '.slider__content-item', function(e) {
+        e.preventDefault();
+        
+        var getUrl = $(this).attr('data-model-url');
+    
+        location.href = getUrl;
+      });
+      
       //Notifications
       $(document).on('click', function(e) {
         var container = $('.notification');
@@ -336,17 +387,28 @@ $(document).on('click' , '.cart__item-remove , .notification__btn' , function(){
 
           switch(getAction) {
             case 'buy':
+              setTimeout(function () {
               var getThumb = getTarget.data('product-thumb');
-              var getid = $("input[name='id']").val();
+              var getid = $("input[name='id']").val();              
               var setThumb = $('<img class="notification__thumb" alt="Thumb of product" src="' + getThumb + '">');
               var setText = $("<span class='notification__text'>Good choise! <br> It's in your cart</span>");
-              var setBtn = $("<a class='notification__btn' href='"+getid+"'>Remove from buy cart</a>");
+              var setBtn = $("<a data-quantity = '"+(data_quantity)+"' class='notification__btn' href='"+getid+"'>Remove from buy cart</a>");
               container.html(setThumb).append(setText).append(setBtn);
+                if($(window).width() <= 480) {
+              container.appendTo(getParent).css({
+                top: (getPos.top + getTarget.outerHeight() + 20) + "px",
+                left: "50%",
+                transform: "translateX(-50%)"
+              }).show(5).delay(3000).hide(5);
+                } else {
               container.appendTo(getParent).css({
                 top: (getPos.top + getTarget.outerHeight() + 20) + "px",
                 left: (getPos.left - Math.abs(getTarget.outerWidth() - container.outerWidth())/2) + "px"
-              }).show();
-              break;
+              }).show(5).delay(3000).hide(5);
+                }
+           
+                 }, 1500);
+                 break;
             case 'try':
               var getThumb = getTarget.data('product-thumb');
               var setThumb = $('<img class="notification__thumb" alt="Thumb of product" src="' + getThumb + '">');

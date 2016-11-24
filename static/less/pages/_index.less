@@ -127,7 +127,7 @@
   @media (min-width: 1800px) {
     &--our-story,
     &--campaign {
-      height: 680px;
+      height: 720px;
     }
     &--our-story &__text {
       max-width: 508px;
@@ -138,13 +138,15 @@
     &--our-story .sound-btn {
       display: none;
     }
-    &--campaign {
-      background: url('@{img-folder}campaign-bg-hd.png');
-    }
   }
   @media (max-width: 480px) {
-    background-position: 67% 0; 
+    background-position: 70% 0; 
     padding-top: 20px;
+    &--homepage {
+      -webkit-box-shadow: inset 0px -146px 101px -41px rgba(0,0,0,0.75);
+      -moz-box-shadow: inset 0px -146px 101px -41px rgba(0,0,0,0.75);
+      box-shadow: inset 0px -146px 101px -41px rgba(0,0,0,0.75);
+    }
   }
 }
 
@@ -164,7 +166,7 @@
     font-weight: 700;
     font-size: 34px;
     line-height: 1;
-    margin: 7% auto 9%;
+    margin: 75px auto 80px;
     color: #fff;
     letter-spacing: 4px;
     background: url('@{img-folder}manifesto-glitch.png') no-repeat;
@@ -175,6 +177,7 @@
       letter-spacing: 10px;
     }
     @media (max-width: 480px) {
+      margin: 50px auto 50px;
       font-size: 22px;
       letter-spacing: 5px;
     }
@@ -195,10 +198,12 @@
   position: relative;
   color: @font;
   padding-bottom: 110px;
-  z-index: 3;
+  // z-index: 3;
   text-transform: uppercase;
   letter-spacing: 1.5px;
   text-align: center;
+  margin-top: 50px;
+
   &__item {
     margin-bottom: 50px;
     &-content {
@@ -259,6 +264,7 @@
         width: 300px;
         margin: 0 auto;
         letter-spacing: -.5px;
+        background: #15191e;
       }
     }
     &:last-child {
@@ -342,6 +348,7 @@
         }
       }
       @media (max-width: 480px) {
+        // display: none;
         width: 100%;
         margin-left: 0 !important;
 
@@ -438,8 +445,8 @@
       text-align: center;
 
       @media (max-width: 480px) {
-        width: 540px;
-        margin-left: 25%;
+        width: 650px;
+        margin-left: 6%;
         text-align-last: auto;
       }
     }
@@ -584,7 +591,6 @@
     }
   }
   &__img {
-    cursor: pointer;
     &-title {
       position: absolute;
       bottom: -30px;
@@ -668,7 +674,7 @@
 
 .slider {
   position: relative;
-  z-index: 1;
+  z-index: 3;
   margin: 45px 0 40px 0;
 
   &__content {
@@ -687,7 +693,7 @@
     }
     &-item.active {
       opacity: 1;
-      cursor: pointer;
+      // cursor: pointer;
       z-index: 1;
       // overflow: hidden;
     }
@@ -745,7 +751,9 @@
     background: #eaeaea;
 
     @media (max-width: 480px) {
+      z-index: auto;
       max-width: 100%;
+      padding-top: 50px;
     }
   }
   &--product &__content {
@@ -753,6 +761,8 @@
 
     @media (max-width: 480px) {
       min-height: 150px;
+      margin-bottom: 40px;
+      z-index: 4;
     }
 
     & img {
@@ -873,17 +883,17 @@
     width: 100%;
     background: @line;
     &:first-child {
-      top: 23.3%;
+      top: 24.4%;
     }
     &:last-child {
-      bottom: 23.3%;
+      bottom: 24.4%;
     }
     @media (min-width: 1800px) {
       &:first-child {
-        top: 19%;
+        top: 21.25%;
       }
       &:last-child {
-        bottom: 19%;
+        bottom: 21.25%;
       }
     }
   }
@@ -981,7 +991,14 @@
       transform: translateY(-50%);
 
       &:last-child {
-        margin-bottom: 75%;
+        margin-bottom: 15%;
+
+        @media (min-width: 1800px) {
+          margin-bottom: 0%;
+        }
+        @media (max-width: 480px) {
+          margin-bottom: 75%;
+        }
       }
     }
     &-link {
@@ -1088,6 +1105,10 @@
       position: relative;
       float: right;
       width: 75%;
+
+      @media (max-width: 480px) {
+        width: 65%;
+      }
     }
     &-title {
       font-size: 14px;
@@ -1131,5 +1152,11 @@
 
   @media (max-width: 480px) {
     width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .js-tab-content {
+    padding: 0 4%;
   }
 }

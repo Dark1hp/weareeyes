@@ -42,10 +42,9 @@
    padding-right: 0;
    padding-left: 0;
 }
-.container-center {
+.container-center { 
   position: relative;
   z-index: 5;
-  &:extend(.col-md-5);
   float: none;
   max-width: 510px;
   margin: 0 auto; 
@@ -55,6 +54,11 @@
   }
   @media (max-width: 480px) {
     max-width: 300px;
+
+    & .header__text {
+      margin-top: 30px;
+      background: #15191e;
+    }
   }
 }
 .section-title {
