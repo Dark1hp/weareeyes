@@ -302,6 +302,15 @@ $(document).on('click' , '.cart__item-remove , .notification__btn' , function(){
         }
       });
 
+      //Centering Scroll
+      $(document).on('click', '.product__descr-item', function(e) {
+        e.preventDefault();
+        var getTarget = $(this);
+        var getScroll = $(this).closest('.overflow-x-scroll');
+        getScroll.scrollTo(getTarget, 500, {offset: -($(window).width()-getTarget.width())/2.5});
+      });
+//       $('.overflow-x-scroll').scrollTo($('.overflow-x-scroll').find('.product__descr-item:nth-child(2)'), 500, {offset: -($(window).width()-$('.overflow-x-scroll').find('.product__descr-item:nth-child(2)').width())/2.5})
+      
       // Hover Effect
       if($(window).width() > 480) { 
         $('[data-model-hover]').mouseover(function(e) {
@@ -349,7 +358,6 @@ $(document).on('click' , '.cart__item-remove , .notification__btn' , function(){
           getTarget.closest('.slider').siblings('.catalog__list-link').attr("href", getTarget.attr("data-model-url"));
         }
       })
-
 
       //Addition
       $(document).on('click', '.slider__color', function(e) {
