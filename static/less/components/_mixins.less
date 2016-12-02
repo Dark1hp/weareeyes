@@ -13,3 +13,15 @@
 .transition(@prop: all, @time: 0.3s, @ease: ease-in-out) {
   transition: @prop @time @ease;
 }
+
+.keyframes(@name; @arguments) {
+	@-moz-keyframes @name { @arguments(); }
+	@-webkit-keyframes @name { @arguments(); }
+	@keyframes @name { @arguments(); }
+}
+
+.animation(@arguments) {
+	-webkit-animation: @arguments;
+	-moz-animation: @arguments;
+	animation: @arguments;
+}

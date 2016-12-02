@@ -1,10 +1,10 @@
 (function ($) {
   'use strict';
-var data_quantity;
+  var data_quantity;
   $(document).ready(function () {
     $('.add-to-cart').on('click' , function(event){
      event.preventDefault();
-      var id = $("input[name='id']").val();
+     var id = $("input[name='id']").val();
      $.ajax({
       url: '/cart/add.js',
       type: 'POST',
@@ -12,139 +12,95 @@ var data_quantity;
       data: $('form[action="/cart/add"]').serialize(),
       success: function(data) {
        // console.log(data);
-        setTimeout(function () {
+       setTimeout(function () {
         jQuery.getJSON('/cart.js', function(cart) {
-          
-          
-        //     console.log(cart);
-          $('.cart__info-count').html(cart.item_count);
-          $('.product-price-cart').html(Shopify.formatMoney(cart.original_total_price, window.money_format) );
-          var arr = cart.items;
-          var html_p = '' ; 
-          html_p +=  '<h3 class="cart__item-title">Shopping bag</h3>';
-          html_p +='<span class="cart__item-count">('+cart.item_count+' item selected)</span>';
-          for(var i = 0 ; i< arr.length ; i++ ){
-            if( arr[i].id == id ){
-               data_quantity = arr[i].quantity ;
-              console.log(data_quantity);
-               }
-               
-         var  html_p_item = '';
-           html_p_item += '<div class="cart__item-product clearfix">'
-           html_p_item += '<div class="cart__item-photo"><img src="'+ arr[i].image +'" alt="{{ item.title | escape }}"></div>';
-           html_p_item +='<div class="cart__item-info">';
-           html_p_item += '<span class="product-name">'+ arr[i].product_title +'</span>';
-           html_p_item += '<span class="product-price">'+Shopify.formatMoney(arr[i].price, window.money_format)  +'</span>';
-           html_p_item += '<a data-quantity = "'+arr[i].quantity+'" href="'+arr[i].id+'" class="cart__item-remove "></a>'; 
-           html_p_item +=  "</div>";
-           html_p_item +=  "</div>";
-            var  html_p_item_ar = '';
-           if(arr[i].quantity > 1){
-            for(var iq = 0 ; iq< arr[i].quantity ; iq++ ){
-              html_p_item_ar +=html_p_item;
-           }
-         }else{
-          html_p_item_ar+=html_p_item;
-         }
-            html_p += html_p_item_ar ;
 
+
+        //     console.log(cart);
+        $('.cart__info-count').html(cart.item_count);
+        $('.product-price-cart').html(Shopify.formatMoney(cart.original_total_price, window.money_format) );
+        var arr = cart.items;
+        var html_p = '' ; 
+        html_p +=  '<h3 class="cart__item-title">Shopping bag</h3>';
+        html_p +='<span class="cart__item-count">('+cart.item_count+' item selected)</span>';
+        for(var i = 0 ; i< arr.length ; i++ ){
+          if( arr[i].id == id ){
+           data_quantity = arr[i].quantity ;
+           console.log(data_quantity);
          }
-         $('.cart__item_add').html(html_p);
+
+         var  html_p_item = '';
+         html_p_item += '<div class="cart__item-product clearfix">'
+         html_p_item += '<div class="cart__item-photo"><img src="'+ arr[i].image +'" alt="{{ item.title | escape }}"></div>';
+         html_p_item +='<div class="cart__item-info">';
+         html_p_item += '<span class="product-name">'+ arr[i].product_title +'</span>';
+         html_p_item += '<span class="product-price">'+Shopify.formatMoney(arr[i].price, window.money_format)  +'</span>';
+         html_p_item += '<a data-quantity = "'+arr[i].quantity+'" href="'+arr[i].id+'" class="cart__item-remove "></a>'; 
+         html_p_item +=  "</div>";
+         html_p_item +=  "</div>";
+         var  html_p_item_ar = '';
+         if(arr[i].quantity > 1){
+          for(var iq = 0 ; iq< arr[i].quantity ; iq++ ){
+            html_p_item_ar +=html_p_item;
+          }
+        }else{
+          html_p_item_ar+=html_p_item;
+        }
+        html_p += html_p_item_ar ;
+
+      }
+      $('.cart__item_add').html(html_p);
        //  console.log(html_p);
-       } );
-           }, 500);
-          
+     } );
+      }, 200);
+
 //$('.js-cart-click').trigger('click');
 }
 })
-});
+   });
 
 
+    $(document).on('click' , '.cart__item-remove , .notification__btn' , function(){
+     var var_href = $(this).attr('href');
+     var var_quantity = $(this).data('quantity');
 
-
-
-$('.add-to-try').on('click' , function(event){
- event.preventDefault();
- $.ajax({
-  url: '/cart/add.js',
-  type: 'POST',
-  dataType: 'json',
-  data: $('form[action="/cart/try"]').serialize(),
-  success: function(data) {
-  //  console.log(data);
-    jQuery.getJSON('/cart.js', function(cart) {
-      $('.cart__info-count').html(cart.item_count);
-      $('.product-price-cart').html(Shopify.formatMoney(cart.original_total_price, window.money_format));
-      var arr = cart.items;
-      var html_p = '' ; 
-      html_p +=  '<h3 class="cart__item-title">Shopping bag</h3>';
-      html_p +='<span class="cart__item-count">('+cart.item_count+' item selected)</span>';
-      for(var i = 0 ; i< arr.length ; i++ ){
-       html_p += '<div class="cart__item-product clearfix">'
-       html_p += '<div class="cart__item-photo"><img src="'+ arr[i].image +'" alt="{{ item.title | escape }}"></div>';
-       html_p +='<div class="cart__item-info">';
-       html_p += '<span class="product-name">'+ arr[i].product_title +'</span>';
-       html_p += '<span class="product-price">'+Shopify.formatMoney(arr[i].price, window.money_format)  +'</span>';
-       html_p += '<a href="'+arr[i].id+'" class="cart__item-remove "></a>'; 
-       html_p +=  "</div>";
-       html_p +=  "</div>";
-     }
-     $('.cart__item_add').html(html_p);
-      
-   //  console.log(html_p);
-   } );
-    //$('.js-cart-click').trigger('click');
-     $('.js-product-btn').trigger('click');
-    
-  }
-})
-
-
-
-});
-
-
-$(document).on('click' , '.cart__item-remove , .notification__btn' , function(){
- var var_href = $(this).attr('href');
- var var_quantity = $(this).data('quantity');
- 
- jQuery.post('/cart/update.js', "updates["+var_href+"]="+(var_quantity-1)+"");
-  setTimeout(function () {
- jQuery.getJSON('/cart.js', function(cart) {
-  $('.cart__info-count').html(cart.item_count);
-  $('.product-price-cart').html(Shopify.formatMoney(cart.original_total_price, window.money_format));
-  var arr = cart.items;
-          var html_p = '' ; 
-          html_p +=  '<h3 class="cart__item-title">Shopping bag</h3>';
-          html_p +='<span class="cart__item-count">('+cart.item_count+' item selected)</span>';
-          for(var i = 0 ; i< arr.length ; i++ ){
+     jQuery.post('/cart/update.js', "updates["+var_href+"]="+(var_quantity-1)+"");
+     setTimeout(function () {
+       jQuery.getJSON('/cart.js', function(cart) {
+        $('.cart__info-count').html(cart.item_count);
+        $('.product-price-cart').html(Shopify.formatMoney(cart.original_total_price, window.money_format));
+        var arr = cart.items;
+        var html_p = '' ; 
+        html_p +=  '<h3 class="cart__item-title">Shopping bag</h3>';
+        html_p +='<span class="cart__item-count">('+cart.item_count+' item selected)</span>';
+        for(var i = 0 ; i< arr.length ; i++ ){
          var  html_p_item = '';
-           html_p_item += '<div class="cart__item-product clearfix">'
-           html_p_item += '<div class="cart__item-photo"><img src="'+ arr[i].image +'" alt="{{ item.title | escape }}"></div>';
-           html_p_item +='<div class="cart__item-info">';
-           html_p_item += '<span class="product-name">'+ arr[i].product_title +'</span>';
-           html_p_item += '<span class="product-price">'+Shopify.formatMoney(arr[i].price, window.money_format)  +'</span>';
-           html_p_item += '<a data-quantity = "'+arr[i].quantity+'" href="'+arr[i].id+'" class="cart__item-remove "></a>'; 
-           html_p_item +=  "</div>";
-           html_p_item +=  "</div>";
-            var  html_p_item_ar = '';
-           if(arr[i].quantity > 1){
-            for(var iq = 0 ; iq< arr[i].quantity ; iq++ ){
-              html_p_item_ar +=html_p_item;
-           }
-         }else{
+         html_p_item += '<div class="cart__item-product clearfix">'
+         html_p_item += '<div class="cart__item-photo"><img src="'+ arr[i].image +'" alt="{{ item.title | escape }}"></div>';
+         html_p_item +='<div class="cart__item-info">';
+         html_p_item += '<span class="product-name">'+ arr[i].product_title +'</span>';
+         html_p_item += '<span class="product-price">'+Shopify.formatMoney(arr[i].price, window.money_format)  +'</span>';
+         html_p_item += '<a data-quantity = "'+arr[i].quantity+'" href="'+arr[i].id+'" class="cart__item-remove "></a>'; 
+         html_p_item +=  "</div>";
+         html_p_item +=  "</div>";
+         var  html_p_item_ar = '';
+         if(arr[i].quantity > 1){
+          for(var iq = 0 ; iq< arr[i].quantity ; iq++ ){
+            html_p_item_ar +=html_p_item;
+          }
+        }else{
           html_p_item_ar+=html_p_item;
-         }
-            html_p += html_p_item_ar ;
+        }
+        html_p += html_p_item_ar ;
 
-         }
-         $('.cart__item_add').html(html_p);
+      }
+      $('.cart__item_add').html(html_p);
 // console.log(html_p);
 } );
-    }, 500);
-  $(document).trigger('click');
- return false;
-});
+     }, 500);
+     $(document).trigger('click');
+     return false;
+   });
     // (function formatArticleTitle() {
 
     //   var maxNumberForTitle = 25;
@@ -239,13 +195,13 @@ $(document).on('click' , '.cart__item-remove , .notification__btn' , function(){
     //       }  
     //     }
     //   }
-      
+
     // })();
 
     (function dlTabs() {
       var wrapper = $('.js-tab-wrapper'),
-        menu = wrapper.find('.js-tab-menu li'),
-        content = wrapper.find('.js-tab-content');
+      menu = wrapper.find('.js-tab-menu li'),
+      content = wrapper.find('.js-tab-content');
       content.each(function(i) {
         if (i !== 0) {
           $(this).hide();
@@ -258,8 +214,8 @@ $(document).on('click' , '.cart__item-remove , .notification__btn' , function(){
 
       menu.click(function() {
         var getWrapper = $(this).closest(wrapper),
-          dataTab = $(this).attr('data-tab'),
-          curDataTab = getWrapper.find(menu).find('.active').parent().attr('data-tab');
+        dataTab = $(this).attr('data-tab'),
+        curDataTab = getWrapper.find(menu).find('.active').parent().attr('data-tab');
         getWrapper.find(menu).find('a').removeClass('active');
         $(this).find('a').addClass('active');
 
@@ -310,7 +266,7 @@ $(document).on('click' , '.cart__item-remove , .notification__btn' , function(){
         getScroll.scrollTo(getTarget, 500, {offset: -($(window).width()-getTarget.width())/2.5});
       });
 //       $('.overflow-x-scroll').scrollTo($('.overflow-x-scroll').find('.product__descr-item:nth-child(2)'), 500, {offset: -($(window).width()-$('.overflow-x-scroll').find('.product__descr-item:nth-child(2)').width())/2.5})
-      
+
       // Hover Effect
       if($(window).width() > 480) { 
         $('[data-model-hover]').mouseover(function(e) {
@@ -319,7 +275,7 @@ $(document).on('click' , '.cart__item-remove , .notification__btn' , function(){
           var getImg = $(this).find('img');
           var getSrcImg = getImg.attr('src');
           $(this).data('model-hover', getSrcImg);
-            getImg.attr('src', getSrc).attr('style', 'float: none; margin-top: 30px;');
+          getImg.attr('src', getSrc).attr('style', 'float: none; margin-top: 30px;');
           // getImg.fadeOut(300, function() {
           //   getImg.fadeIn(300);
           // });
@@ -335,14 +291,14 @@ $(document).on('click' , '.cart__item-remove , .notification__btn' , function(){
           // });
         });
       }
-        
+
       // Slider
       $(document).on('click', '.js-slide-control', function(e) {
         e.preventDefault();
         
         var getSlider = $(this).closest('.slider');
         var getCurrent = getSlider.find('.slider__content-item.active');
-    var getTarget;
+        var getTarget;
         
         if($(this).hasClass('js-slide-prev') && !$(this).hasClass('disabled')) {
           getSlider.find('.js-slide-control.active').removeClass('active').prev().addClass('active');
@@ -353,7 +309,7 @@ $(document).on('click' , '.cart__item-remove , .notification__btn' , function(){
           getTarget = getCurrent.removeClass('active').next().addClass('active');
           checkSlide(getCurrent.next(), getSlider);
         }
-    
+
         if(getTarget) {
           getTarget.closest('.slider').siblings('.catalog__list-link').attr("href", getTarget.attr("data-model-url"));
         }
@@ -380,7 +336,7 @@ $(document).on('click' , '.cart__item-remove , .notification__btn' , function(){
         e.preventDefault();
         
         var getUrl = $(this).attr('data-model-url');
-    
+
         location.href = getUrl;
       });
       
@@ -395,41 +351,41 @@ $(document).on('click' , '.cart__item-remove , .notification__btn' , function(){
 
           switch(getAction) {
             case 'buy':
-              setTimeout(function () {
+            setTimeout(function () {
               var getThumb = getTarget.data('product-thumb');
               var getid = $("input[name='id']").val();              
               var setThumb = $('<img class="notification__thumb" alt="Thumb of product" src="' + getThumb + '">');
               var setText = $("<span class='notification__text'>Good choise! <br> It's in your cart</span>");
               var setBtn = $("<a data-quantity = '"+(data_quantity)+"' class='notification__btn' href='"+getid+"'>Remove from buy cart</a>");
               container.html(setThumb).append(setText).append(setBtn);
-                if($(window).width() <= 480) {
-              container.appendTo(getParent).css({
-                top: (getPos.top + getTarget.outerHeight() + 20) + "px",
-                left: "50%",
-                transform: "translateX(-50%)"
-              }).show(5).delay(3000).hide(5);
-                } else {
-              container.appendTo(getParent).css({
-                top: (getPos.top + getTarget.outerHeight() + 20) + "px",
-                left: (getPos.left - Math.abs(getTarget.outerWidth() - container.outerWidth())/2) + "px"
-              }).show(5).delay(3000).hide(5);
-                }
-           
-                 }, 1500);
-                 break;
+              if($(window).width() <= 480) {
+                container.appendTo(getParent).css({
+                  top: (getPos.top + getTarget.outerHeight() + 20) + "px",
+                  left: "50%",
+                  transform: "translateX(-50%)"
+                }).show(5).delay(3000).hide(5);
+              } else {
+                container.appendTo(getParent).css({
+                  top: (getPos.top + getTarget.outerHeight() + 20) + "px",
+                  left: (getPos.left - Math.abs(getTarget.outerWidth() - container.outerWidth())/2) + "px"
+                }).show(5).delay(3000).hide(5);
+              }
+
+            }, 1500);
+            break;
             case 'try':
-              var getThumb = getTarget.data('product-thumb');
-              var setThumb = $('<img class="notification__thumb" alt="Thumb of product" src="' + getThumb + '">');
-              var setText = $("<span class='notification__text'><b>" + getTarget.data('try-number') + " out of " + getTarget.data('try-max') + "</b> <br> For you try!</span>");
-              var setBtn = $("<a class='notification__btn' href='#!'>Remove from try cart</a>");
-              container.html(setThumb).append(setText).append(setBtn);
-              container.appendTo(getParent).css({
-                top: (getPos.top + getTarget.outerHeight() + 20) + "px",
-                left: (getPos.left - Math.abs(getTarget.outerWidth() - container.outerWidth())/2) + "px"
-              }).show();
-              break;
+            var getThumb = getTarget.data('product-thumb');
+            var setThumb = $('<img class="notification__thumb" alt="Thumb of product" src="' + getThumb + '">');
+            var setText = $("<span class='notification__text'><b>" + getTarget.data('try-number') + " out of " + getTarget.data('try-max') + "</b> <br> For you try!</span>");
+            var setBtn = $("<a class='notification__btn' href='#!'>Remove from try cart</a>");
+            container.html(setThumb).append(setText).append(setBtn);
+            container.appendTo(getParent).css({
+              top: (getPos.top + getTarget.outerHeight() + 20) + "px",
+              left: (getPos.left - Math.abs(getTarget.outerWidth() - container.outerWidth())/2) + "px"
+            }).show();
+            break;
             default:
-              break;
+            break;
           }
         } else if(!$(e.target).closest('.notification').length) {
           container.hide();
@@ -456,7 +412,7 @@ $(document).on('click' , '.cart__item-remove , .notification__btn' , function(){
         }
       });
       // Scroll to anchor links
-      $(document).on('click', '.nav__item', function(event) {
+      $(document).on('click', '.nav__item, .header__scroll', function(event) {
         event.preventDefault();
 
         // Get id of container from href attribute
@@ -484,6 +440,105 @@ $(document).on('click' , '.cart__item-remove , .notification__btn' , function(){
         getSlider.find('.js-slide-control').removeClass('disabled');
       }
     }
+
+    // Animations (Glitch and etc.)
+    (function animations() {
+
+      // Burger icon animations
+      $('.burger').hover(
+        function(e) {
+          e.preventDefault();
+          console.log($(this).find('.burger__line:last-child'));
+          $(this).find('.burger__line:last-child').animate({
+            width: '100%'
+          }, 500, 'easeOutBack');
+        }, function(e) {
+          e.preventDefault();
+          $(this).find('.burger__line:last-child').animate({
+            width: '65%'
+          }, 500)
+        }
+        );
+
+        // $('.menu__list').bind('DOMMouseScroll mousewheel', function(e){
+        //     var menuArr = $('.menu.expanded .menu__list-item');
+
+        //     if(e.originalEvent.wheelDelta > 0 || e.originalEvent.detail < 0) {
+
+        //         // $.each(menuArr, function(i, v) {
+        //         //   $(menuArr[i]).animate({top: (($(window).height()/2)+(i*90))});
+        //         // });
+
+        //       $.each(menuArr, function(i, v) {
+        //         $(menuArr[i]).animate({top: $(this).position().top+25}, 500);
+        //       });
+        //     }
+        //     else{
+
+        //       $.each(menuArr, function(i, v) {
+        //         $(menuArr[i]).animate({top: $(this).position().top-25}, 500);
+        //       });
+
+        //     }
+        // });
+
+      // $('.menu__list').scroll(function(e) {
+      //   e.preventDefault();
+
+      //   console.log("Hello");
+      //   // $(this).find('.menu__list-item:first-child').css({top: $(window).height()/2});
+      //   // console.log($($(this).find('.menu__list-item:first-child .menu__list-link')).position());
+
+      //   // $($(this).find('.menu__list-item')[0]).css('top', ($($(this).find('.menu__list-item')[0]).position().top - 25) + 'px');
+      //   // $($(this).find('.menu__list-item')[0]).animate({
+      //   //     top: 0
+      //   //   }, 2000, 'easeOutElastic');
+      // });
+
+      function setPositionMenu() {
+        var menuArr = $('.menu.expanded .menu__list-item');
+
+        $.each(menuArr, function(i, v) {
+          $(menuArr[i]).css({top: (($(window).height()/2)+(i*90))});
+        });
+      }
+
+      $(document).on('click', '.burger', function(event) {
+        event.preventDefault();
+        var el = $(this);
+
+        if(el.data('expand') === true) {
+          setPositionMenu();
+          el.data('expand', false);
+          el.find('.burger__info span:first-child').hide('slide', {direction: 'down', easing: 'easeInBack'}, 600);
+          el.find('.burger__line:first-child, .burger__line:last-child').clearQueue().stop().hide('slide', {direction: 'left', easing: 'easeInBack'}, 500, function() {
+            $(this).css({"visibility":"hidden",display:'block'}).slideUp(200);
+          });
+        } else {
+          el.data('expand', true);
+          el.find('.burger__line:first-child, .burger__line:last-child').clearQueue().stop().css({"visibility":"visible"}).show('slide', {direction: 'left', easing: 'easeOutBack'}, 500);
+          el.find('.burger__info span:first-child').show('drop', {direction: 'down', easing: 'easeOutBack'}, 500);
+        }
+
+        // var r = e($(window).width(), $(window).height(), 20)
+        // , n = Math.max(1, Math.max(r.w / $(window).width(), r.h / $(window).height()));
+
+        TweenMax.set($('.menu')[0], {
+          scale: 1,
+          rotation: 20,
+          y: $(window).height(),
+          force3D: "auto",
+          transformOrigin: "0px 0px"
+        }),
+        TweenMax.to($('.menu')[0], .5, {
+          ease: Power2.easeOut,
+          delay: .1,
+          y: 0,
+          rotation: 0,
+          force3D: "auto",
+        })
+      })
+    })();
 
   }); //end ready
 

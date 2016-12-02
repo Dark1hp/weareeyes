@@ -183,6 +183,25 @@
         getSlider.find('.js-slide-control').removeClass('disabled');
       }
     }
+
+    // Animations (Glitch and etc.)
+    (function animations() {
+
+      // Burger icon animations
+
+      $(document).on('hover', '.burger', function(e) {
+        e.preventDefault();
+        console.log("Hello");
+        $(this).find('.burger__line:last-child').animate({
+          width: '100%'
+        }, 1000, 'easeOutBack');
+      }, function(e) {
+        e.preventDefault();
+        $(this).find('.burger__line:last-child').animate({
+          width: '75%'
+        }, 500)
+      }
+    })();
   }); //end ready
 
 } (jQuery));

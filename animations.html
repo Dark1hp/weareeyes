@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test Spring Effect</title>
+  <style>
+    body,html {
+      margin: 0;
+      padding: 0;
+    }
+    .wrapper {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #333;
+    }
+    .box__text {
+      position: absolute;
+      text-align: center;
+      width: 100%;
+      color: #fff;
+      font: 42px/1 Calibri;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="wrapper">
+    <div id='box'>
+      <div class="box__text">Lorem1</div>
+      <div class="box__text">Lorem2</div>
+      <div class="box__text">Lorem3</div>
+      <div class="box__text">Lorem4</div>
+      <div class="box__text">Lorem5</div>
+      <div class="box__text">Lorem6</div>
+      <div class="box__text">Lorem7</div>
+      <div class="box__text">Lorem8</div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+  var core              = function() {}, 
+    $w                = $(window), 
+    $b                = $(".wrapper"), 
+    $boxItems             = $(".box__text"),
+    arr = Array.prototype.slice.call($boxItems).reverse();
+    $boxItems = arr,
+    scrollY             = 0, 
+    lastScrollY           = 0, 
+    acceleration          = Array(),
+    velocity            = Array(), 
+    inMotion            = Array(),
+    frameRate           = 1 / 60,
+    newTop              = Array(),
+    NewPositions = Array(),
+    Positions = Array(), 
+    animating           = false,
+    stiffness = 28,
+    friction = 9,
+    threshold = 2;
+
+console.log($boxItems);
+
+  core.prototype.init = function() {
+    window.requestAnimFrame = (function() {
+      return window.requestAnimationFrame ||
+      window.webkitRequestAnimationFrame ||
+      window.mozRequestAnimationFrame ||
+      window.oRequestAnimationFrame ||
+      window.msRequestAnimationFrame ||
+      function(callback) {
+        window.setTimeout(callback, 1000 / 60);
+      };
+    })();
+
+    window.cancelRequestAnimFrame = ( function() {
+      return window.cancelAnimationFrame          ||
+      window.webkitCancelRequestAnimationFrame    ||
+      window.mozCancelRequestAnimationFrame       ||
+      window.oCancelRequestAnimationFrame       ||
+      window.msCancelRequestAnimationFrame        ||
+      clearTimeout
+    } )();
+
+    $b.css({height: $w.height() * 1.5});
+    $($boxItems).each(function(i, v) {
+      // $(v).css({top: $w.height()/2+i*150});
+      Positions[i] = $w.height()/2 + $(v).position().top - $('body').position().top;
+      NewPositions[i] = Positions[i];
+      newTop[i] = Positions[i];
+      inMotion[i] = false;
+      velocity[i] = 0;
+      acceleration[i] = 0;
+    });
+    window.addEventListener('scroll', core.onScrolling, false);
+  }
+
+  core.onScrolling = function(e) {
+//    lastScrollY = scrollY;
+  //  scrollY = window.scrollY;
+    if(scrollY = window.scrollY, !animating) {
+      for (var i = 0; i < $boxItems.length; i++) inMotion[i] = true;
+      animating = true;
+      requestAnimFrame(core.stepScrolling);
+    }
+  }
+
+  core.stepScrolling = function() {
+    for (var t = 0; t < $boxItems.length; t++) {
+      var $thisItem = $boxItems[t];
+
+      inMotion[t] ? (acceleration[t] = (stiffness + 5 * t) * (Positions[t] - scrollY - Math.round(NewPositions[t])) - friction * velocity[t],
+        velocity[t] += acceleration[t] * frameRate,
+        newTop[t] += velocity[t] * frameRate,
+        inMotion[t] = Math.abs(acceleration[t]) >= threshold || Math.abs(velocity[t]) >= threshold,
+        $($thisItem).css({top: newTop[t]}),
+        NewPositions[t] = newTop[t]) : core.completeScrolling()
+    };
+    if (animating) requestAnimFrame(core.stepScrolling);
+  }
+
+  core.completeScrolling = function() {
+    for (var i = 0; i < $boxItems.length; i++) {
+      acceleration[i] = 0;
+      velocity[i] = 0;
+      inMotion[i] = false;
+    }
+    animating = false;
+    cancelAnimationFrame(core.stepScrolling);
+  }
+
+    var Core = new core();
+    Core.init();
+})
+</script>
+</body>
+</html>
