@@ -1,155 +1,181 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Test Spring Effect</title>
+  <title>Test Spring Effect</title>
   <style>
-    body,html {
-      margin: 0;
-      padding: 0;
-    }
-    .wrapper {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: #333;
-    }
-    .box__text {
-      /*position: absolute;*/
-      text-align: center;
-      width: 100%;
-      color: #fff;
-      font: 42px/1 Calibri;
-      margin-bottom: 50px;
-    }
-    #box {
+  body,
+  html {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #333;
+  }
+  
+  .box__text {
+    /*position: absolute;*/
+    text-align: center;
+    width: 100%;
+    color: #fff;
+    font: 42px/1 Calibri;
+    margin-bottom: 50px;
+  }
+  
+  #box {
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  .test {
       position: fixed;
-      top: 0;
-      width: 100%;
-    }
+  top: 0;
+  left: 0;
+  z-index: 6;
+  width: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  }
   </style>
   <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 </head>
+
 <body>
-<div class="wrapper">
-    <div id='box'>
-      <div class="box__text">Lorem1</div>
-      <div class="box__text">Lorem2</div>
-      <div class="box__text">Lorem3</div>
-      <div class="box__text">Lorem4</div>
-      <div class="box__text">Lorem5</div>
-      <div class="box__text">Lorem6</div>
-      <div class="box__text">Lorem7</div>
-      <div class="box__text">Lorem8</div>
+  <div class="test">
+    <div id="box" class="wrapper">
+      <!-- <div id='box'> -->
+        <div class="box__text">Lorem1</div>
+        <div class="box__text">Lorem2</div>
+        <div class="box__text">Lorem3</div>
+        <div class="box__text">Lorem4</div>
+        <div class="box__text">Lorem5</div>
+        <div class="box__text">Lorem6</div>
+        <div class="box__text">Lorem7</div>
+        <div class="box__text">Lorem8</div>
+      <!-- </div> -->
     </div>
-</div>
+  </div>
+  <script type="text/javascript">
+  $(document).ready(function() {
 
-<script type="text/javascript">
-$(document).ready(function() {
-
-  var core              = function() {}, 
-    $w                = $(window), 
-    $b                = $(".wrapper"), 
-    $boxItems             = $("#box").find('.box__text'),
-    elementsLength = $boxItems.length,
-    arr = Array.prototype.slice.call($boxItems).reverse();
+    var core = function() {},
+      $w = $(window),
+      $b = $(".wrapper"),
+      $boxItems = $b.find('.box__text'),
+      elementsLength = $boxItems.length,
+      arr = Array.prototype.slice.call($boxItems).reverse();
     $boxItems = arr,
-    scrollY             = 0, 
-    lastScrollY           = 0, 
-    acceleration          = Array(),
-    velocity            = Array(), 
-    inMotion            = Array(),
-    frameRate           = 1 / 60,
-    opacity = Array(),
-    newTop              = Array(),
-    NewPositions = Array(),
-    Positions = Array(), 
-    animating           = false,
-    stiffness = 25,
-    friction = 10,
-    threshold = 2;
+      scrollY = 0,
+      lastScrollY = 0,
+      acceleration = Array(),
+      velocity = Array(),
+      inMotion = Array(),
+      frameRate = 1 / 60,
+      opacity = Array(),
+      newTop = Array(),
+      NewPositions = Array(),
+      Positions = Array(),
+      animating = false,
+      stiffness = 25,
+      friction = 10,
+      threshold = 2;
 
-console.log($boxItems);
+    core.prototype.init = function() {
+      window.requestAnimFrame = (function() {
+        return window.requestAnimationFrame ||
+          window.webkitRequestAnimationFrame ||
+          window.mozRequestAnimationFrame ||
+          window.oRequestAnimationFrame ||
+          window.msRequestAnimationFrame ||
+          function(callback) {
+            window.setTimeout(callback, 1000 / 60);
+          };
+      })();
 
-  core.prototype.init = function() {
-    window.requestAnimFrame = (function() {
-      return window.requestAnimationFrame ||
-      window.webkitRequestAnimationFrame ||
-      window.mozRequestAnimationFrame ||
-      window.oRequestAnimationFrame ||
-      window.msRequestAnimationFrame ||
-      function(callback) {
-        window.setTimeout(callback, 1000 / 60);
+      window.cancelRequestAnimFrame = (function() {
+        return window.cancelAnimationFrame ||
+          window.webkitCancelRequestAnimationFrame ||
+          window.mozCancelRequestAnimationFrame ||
+          window.oCancelRequestAnimationFrame ||
+          window.msCancelRequestAnimationFrame ||
+          clearTimeout
+      })();
+
+      $b.css({
+        height: $w.height() * 2.5
+      });
+
+      for (var i = 0; i < elementsLength; i++) {
+        Positions[i] = $w.height() / 2 + $($boxItems[i]).offset().top - $('body').offset().top;
+        NewPositions[i] = Positions[i],
+          newTop[i] = Positions[i],
+          inMotion[i] = true,
+          acceleration[i] = 0,
+          velocity[i] = 0
+      }
+      for (var i = 0; i < elementsLength; i++) {
+        $($boxItems[i]).css({
+          position: 'absolute',
+          transform: "translate3d(0," + Positions[i] + "px,0)",
+          opacity: 1 - Math.abs($w.height() / 2 - Positions[i]) / ($w.height() / 2)
+        });
+      }
+      // debugger;
+      $('.test')[0].addEventListener('scroll', core.onScrolling, false);
+    }
+
+    core.onScrolling = function(e) {
+      lastScrollY = scrollY;
+      scrollY = $('.test').scrollTop();
+
+      for (var i = 0; i < elementsLength; i++) {
+        inMotion[i] = true;
+      }
+      if (!animating) {
+        animating = true;
+        requestAnimFrame(core.stepScrolling);
+      }
+    }
+
+    core.stepScrolling = function() {
+      for (var t = elementsLength - 1; t >= 0; t--) {
+        var $thisItem = $boxItems[t];
+        inMotion[t] ? (
+          acceleration[t] = (stiffness + 5 * t) * (Positions[t] - scrollY - NewPositions[t]) - friction * velocity[t],
+          velocity[t] += acceleration[t] * frameRate,
+          newTop[t] += velocity[t] * frameRate,
+          inMotion[t] = Math.abs(acceleration[t]) >= threshold || Math.abs(velocity[t]) >= threshold,
+          opacity[t] = 1 - Math.abs($($thisItem).offset().top - ($w.height() / 2)) / ($w.height() / 2),
+          console.log(t, $($thisItem).offset().top, newTop[t]),
+          $($thisItem).css({
+            transform: "translate3d(0," + newTop[t] + "px,0)",
+            opacity: opacity[t]
+          }),
+          NewPositions[t] = newTop[t]) : core.completeScrolling()
       };
-    })();
-
-    window.cancelRequestAnimFrame = (function() {
-      return window.cancelAnimationFrame          ||
-      window.webkitCancelRequestAnimationFrame    ||
-      window.mozCancelRequestAnimationFrame       ||
-      window.oCancelRequestAnimationFrame       ||
-      window.msCancelRequestAnimationFrame        ||
-      clearTimeout
-    })();
-
-    $b.css({height: $w.height() * 1.5});
-    console.log(elementsLength);
-
-    for(var i = 0; i < elementsLength; i++) {
-      Positions[i] = $w.height()/2 + $($boxItems[i]).offset().top - $('body').offset().top;
-      NewPositions[i] = Positions[i],
-      newTop[i] = Positions[i],
-      inMotion[i] = true,
-      acceleration[i] = 0,
-      velocity[i] = 0
+      if (animating) requestAnimFrame(core.stepScrolling);
     }
-    for(var i = 0; i < elementsLength; i++) {
-      $($boxItems[i]).css({position: 'absolute', transform: "translate3d(0," + Positions[i] + "px,0)"});
+
+    core.completeScrolling = function() {
+      for (var i = 0; i < elementsLength; i++) {
+        acceleration[i] = 0;
+        velocity[i] = 0;
+        inMotion[i] = false;
+      }
+      // debugger;
+      animating = false;
+      cancelAnimationFrame(core.stepScrolling);
     }
-    debugger;
-    window.addEventListener('scroll', core.onScrolling, false);
-  }
-
-  core.onScrolling = function(e) {
-    lastScrollY = scrollY;
-    scrollY = window.pageYOffset;
-
-    for (var i = 0; i < elementsLength; i++) {inMotion[i] = true;}
-    if(!animating) {
-      animating = true;
-      requestAnimFrame(core.stepScrolling);
-    }
-  }
-
-  core.stepScrolling = function() {
-    for (var t = elementsLength-1; t >= 0; t--) {
-      var $thisItem = $boxItems[t];
-      inMotion[t] ? (
-        acceleration[t] = (stiffness + 5 * t) * (Positions[t] - scrollY - NewPositions[t]) - friction * velocity[t],
-        velocity[t] += acceleration[t] * frameRate,
-        newTop[t] += velocity[t] * frameRate,
-        inMotion[t] = Math.abs(acceleration[t]) >= threshold || Math.abs(velocity[t]) >= threshold,
-        opacity[t] = 1 - Math.abs($w.height()/2 - newTop[t]) / ($w.height()/2),
-        console.log(t, $w.height()/2, newTop[t]),
-        $($thisItem).css({transform: "translate3d(0," + newTop[t] + "px,0)", opacity: opacity[t]}),
-        NewPositions[t] = newTop[t]) : core.completeScrolling()
-    };
-    if (animating) requestAnimFrame(core.stepScrolling);
-  }
-
-  core.completeScrolling = function() {
-    for (var i = 0; i < elementsLength; i++) {
-      acceleration[i] = 0;
-      velocity[i] = 0;
-      inMotion[i] = false;
-    }
-    // debugger;
-    animating = false;
-    cancelAnimationFrame(core.stepScrolling);
-  }
 
     var Core = new core();
     Core.init();
-})
-</script>
+  })
+  </script>
 </body>
+
 </html>
