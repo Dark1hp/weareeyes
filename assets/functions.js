@@ -275,7 +275,7 @@
                   }).show(5).delay(3000).hide(5);
                 }
 
-              }, 1500);
+              }, 500);
               break;
             case 'try':
               var getThumb = getTarget.data('product-thumb');
@@ -492,20 +492,13 @@
         var Core = new core();
 
         if (el.data('expand') === true) {
-          $('body').addClass("overflow-hidden");
           Core.init();
           el.data('expand', false);
           el.find('.burger__info span:first-child').hide('slide', { direction: 'down', easing: 'easeInBack' }, 600);
           el.find('.burger__line:first-child, .burger__line:last-child').clearQueue().stop().hide('slide', { direction: 'left', easing: 'easeInBack' }, 500, function() {
             $(this).css({ "visibility": "hidden", display: 'block' }).slideUp(200);
           });
-        } else {
-          $('body').removeClass("overflow-hidden");
-          Core.reset();
-          el.data('expand', true);
-          el.find('.burger__line:first-child, .burger__line:last-child').clearQueue().stop().css({ "visibility": "visible" }).show('slide', { direction: 'left', easing: 'easeOutBack' }, 500);
-          el.find('.burger__info span:first-child').show('drop', { direction: 'down', easing: 'easeOutBack' }, 500);
-        }
+
 
         TweenMax.set($('.menu')[0], {
             scale: 1,
@@ -522,8 +515,17 @@
             force3D: "auto",
             onComplete: function() {
               $('.menu.expanded').removeAttr('style');
+              $('body').addClass("overflow-hidden");      
             }
           })
+
+        } else {
+          $('body').removeClass("overflow-hidden");
+          Core.reset();
+          el.data('expand', true);
+          el.find('.burger__line:first-child, .burger__line:last-child').clearQueue().stop().css({ "visibility": "visible" }).show('slide', { direction: 'left', easing: 'easeOutBack' }, 500);
+          el.find('.burger__info span:first-child').show('drop', { direction: 'down', easing: 'easeOutBack' }, 500);
+        }
 
       })
 
@@ -545,6 +547,13 @@
 
     })();
 
+    // Check the page
+    (function locPages() {
+      var getHref = location.pathname;
+      if(getHref !== "/" || getHref !== "/pages/wearequality" || getHref !== "/pages/our-story" || getHref !== "/pages/campaign" || getHref !== "/pages/campaign") {
+        $('.footer').find('.line').remove();
+      }
+    })();
   }); //end ready
 
 }(jQuery));
